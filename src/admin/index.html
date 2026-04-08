@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../style.css">
+    <title>Admin Panel</title>
+</head>
+<body>
+        <div id="feature_admin_info">
+            <h2>Admin Management</h2>
+            <button><a href="./roles/" style="text-decoration: none; color: black;">Roles Page</a></button>
+            <input type="text" placeholder="User Name" class="input_user">
+            <input type="text" placeholder="Password" class="input_password">
+            <button onclick="add_users()">Add New User</button>
+            <select name="roles" id="roles_users">
+                <option value="" hidden>Choose Role</option>
+            </select>
+        </div>
+        <div id="info_table_admin">
+            <table class="table_admin">
+                <tr>
+                    <th>ID</th>
+                    <th>Username</th>
+                    <th>Password</th>
+                    <th>Roles</th>
+                    <th>Action</th>
+                </tr>
+            </table>
+        </div>
+        <script src="../main.js"></script>
+        <script src="admin.js"></script>
+</body> 
+</html>

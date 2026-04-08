@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="./style.css">
+    <title>Login Page</title>
+</head>
+<body id="body_login">
+     <!-- <div id="login_page">
+        <input type="text" class="login_user">
+        <input type="password" class="login_password">
+        <button onclick="login_action()">Login</button>
+        <button onclick="register_action()">Register</button>
+     </div> -->
+     <div id="login_page">
+        <div id="conten_login">
+            <h2>Shopping WebSite</h2>
+            <p>Welcome To Shopping WebSite</p>
+            <span>We are happy to see you here</span>
+            <div id="button_sign">
+                <button class="sign_in effect_sign_buttom" onclick="change_status_sign1()">Sign in</button>
+                <button class="sign_up" onclick="change_status_sign2()">Sign up</button>
+            </div>
+            <div class="feature_login">
+                <input type="text" class="login_user " placeholder="Username">
+                <div class="password_feature">
+                    <input type="password" class="login_password" placeholder="Password">
+                    <i class="material-icons password_toggle" onclick="togglePasswordVisibility('.login_password', this)">visibility</i>
+                </div>
+            </div>
+            <div class="feature_sign_up hidden_feature">
+                <input type="text" class="login_user_register" placeholder="Username">
+                <div class="password_feature">
+                    <input type="password" class="login_password_register" placeholder="Password">
+                    <i class="material-icons password_toggle" onclick="togglePasswordVisibility('.login_password_register', this)">visibility</i>
+                </div>
+                <div class="password_feature">
+                    <input type="password" class="login_password_confirm" placeholder="Password confirm">
+                    <i class="material-icons password_toggle" onclick="togglePasswordVisibility('.login_password_confirm', this)">visibility</i>
+                </div>
+            </div>
+            <div id="button_login_register">
+                <button onclick="login_action()" class="button_login">Login</button>
+                <button onclick="register_action()" class="button_register hidden_feature">Register</button>
+            </div>
+        </div>
+     </div>
+     <script src="main.js"></script>
+     <script src="login.js"></script>
+</body>
+</html>

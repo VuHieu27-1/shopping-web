@@ -1,0 +1,179 @@
+@font-face {
+    font-family: "darleysans";
+    src: url(../asset/font/DarleySans-Regular.otf);
+}
+:root{
+    --background: rgba(255, 245, 245, 0.8);
+    --font_text : -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+        'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+        sans-serif;
+    --font_text_other: "darleysans" , sans-serif;
+    --background-image: url(../asset/img/shopping-background.jpg);
+}
+#body_login
+{
+    margin: 0;
+    font-family: var(--font_text);
+    background: var(--background-image);
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+h2{
+    color: #d6336c;
+    margin: 0;
+    font-weight: 500;
+    font-family: var(--font_text_other);
+    margin-bottom: 5px;
+    font-size: 40px;
+}
+p{
+    font-family: var(--font_text);
+    font-weight: 500;
+    margin-bottom: 5px;
+    font-size: 30px;
+}
+span
+{
+    opacity: 0.7;
+    font-size: 15px;
+}
+#login_page
+{
+    display: grid;
+    grid-template-columns: 6fr 4fr;
+    grid-template-areas: 
+    "content intro";
+}
+#conten_login
+{   
+    grid-area: content;
+    padding-top: 20%;
+    padding-left: 20%;
+    background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.9),
+    rgba(255, 200, 210, 0.7),
+    rgba(255, 160, 180, 0.5));
+    backdrop-filter: blur(6px);
+    border-bottom-right-radius: 20px;
+    border-top-right-radius: 20px;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+    min-height: 100dvh;
+    /* min-width: 100dvw; */
+}
+.feature_sign_up,
+.feature_login
+{
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+.password_feature
+{
+    position: relative;
+    width: 60%;
+    margin-top: 10px;
+}
+.password_feature i
+{
+    position: absolute;
+    top: 50%;
+    right: 20px;
+    transform: translateY(-50%);
+    cursor: pointer;
+    color: rgba(90, 89, 89, 0.8);
+}
+.hidden_feature
+{
+    display: none !important;
+}
+
+.feature_sign_up input,
+.feature_login input
+{
+    border: 1px solid rgba(90, 89, 89, 0.3);
+    outline: none;
+    display: block;
+    margin-top: 10px;
+    height: 60px;
+    width: 60%;
+    box-sizing: border-box;  
+    max-height: 200px;
+    font-size: 20px;
+    padding-left: 20px;
+    border-radius: 30px;
+}
+.password_feature input
+{
+    width: 100%;
+    margin-top: 0;
+    padding-right: 55px;
+}
+table{
+    padding: 20px;
+    height: 100%;
+    overflow:scroll;
+    border-spacing: 0;
+}
+th, td{
+    padding: 0px 20px 0px 20px;
+    border: 1px solid black;
+}
+#button_sign
+{
+    margin-top: 40px;
+    border: 1px solid rgba(90, 89, 89, 0.3);
+    background-color: white ;
+    padding: 5px;
+    width: fit-content;
+    white-space: nowrap;
+    border-radius: 30px;
+}
+#button_sign button{
+    font-family: var(--font_text_other);
+    cursor: pointer;
+    border: transparent;
+    background-color: white ;
+    width: 12svw;
+    min-height: 50px;
+    font-size: 22px;
+    border-radius: 20px;
+}
+.effect_sign_buttom
+{
+    background-color: rgba(238, 84, 97, 0.9) !important;
+}
+/* ===================================button_login_register================ */
+.button_login{
+    color: white;
+    font-family: var(--font_text_other);
+    cursor: pointer;
+    border: transparent;
+    background: linear-gradient(135deg, #ff6b81, #f06595);
+    width: 30svw;
+    min-height: 60px;
+    font-size: 22px;
+    border-radius: 30px;
+    margin-top: 50px;
+    display: block;
+}
+.button_register
+{
+    color: white;
+    font-family: var(--font_text_other);
+    cursor: pointer;
+    border: transparent;
+    background: linear-gradient(135deg, #ff6b81, #f06595);
+    width: 30svw;
+    min-height: 60px;
+    font-size: 22px;
+    border-radius: 30px;
+    margin-top: 50px;
+    display: block;
+}
+
+#button_login_register button:hover
+{
+    background: linear-gradient(135deg, #f06595, #e64980);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+}
