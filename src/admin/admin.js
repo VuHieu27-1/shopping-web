@@ -103,7 +103,7 @@ function add_users()
         });
         username.value  = "";
         password.value  = "";
-    }else if(check_edit_admin != -1 && !check_username && !check_input_empty)
+    }else if(check_edit_admin != -1 && !check_input_empty)
     {
         admins.find(admin => admin.id == check_edit_admin).username = username.value;
         admins.find(admin => admin.id == check_edit_admin).password = password.value;

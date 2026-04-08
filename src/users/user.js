@@ -1,16 +1,14 @@
 let urlParams = new URLSearchParams(window.location.search);
 let id_url = urlParams.get('id');
 console.log(id_url);
-let user = localStorage.getItem('user') ? JSON.parse(localStorage.getItem('user')) : undefined;
-const view = document.querySelector('.view p');
-// localStorage.removeItem('user');
+const my_account = document.querySelector('.my_account');
+const setting_user = document.querySelector('.setting_user');
 console.log(user);
 if(user == undefined)
 {
-    view.innerHTML = 
+    my_account.innerHTML = 
     `
-    Chua dang nhap
-    <a href="../">Bam vao links</a>
+     <a href="../">Login</a>
     `;
 }else if(user.id != id_url && user != undefined)
 {
@@ -18,15 +16,15 @@ if(user == undefined)
 }
 else
 {
-    view.innerHTML = 
+    my_account.innerHTML = 
     `
-        user id: ${user.id},
-        user name: ${user.username}
-        user password: ${user.password}  
+    ${user.username}
     `
 }
-function sign_out()
+if(my_account.text.trim() == 'Login')
 {
-    localStorage.removeItem('user');
-    window.location.href = "../";
+    setting_user.classList.add('hidden_feature');
+}else
+{
+    setting_user.classList.remove('hidden_feature');
 }

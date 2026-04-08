@@ -8,7 +8,7 @@ if(window.location.pathname.indexOf('admin') != -1)
 {
     if(user != undefined && user.roles_id == 2)
     {
-        window.location.href = "../../../../../../Python_BE/html/shopping_web/src/test/";
+        window.location.href = "../../users/?id=" + user.id;
     }else if(user == undefined)
     {
         window.location.href = "../";
@@ -47,6 +47,11 @@ function roles_default()
         });
         localStorage.setItem('roles', JSON.stringify(roles));
     }
+}
+function sign_out()
+{
+    localStorage.removeItem('user');
+    window.location.href = "../";
 }
 user_admin();
 roles_default();

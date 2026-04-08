@@ -5,6 +5,15 @@ const login_password_register = document.querySelector(".login_password_register
 const login_password_confirm = document.querySelector(".login_password_confirm");
 const feature_login = document.querySelector(".feature_login");
 const feature_sign_up = document.querySelector('.feature_sign_up');
+if(user != undefined)
+{
+    if(user.roles_id == 1){
+        window.location.href = `./admin/?id=${user.id}`;
+    }else
+    {
+        window.location.href = `./users/?id=${user.id}`;
+    }
+}
 function login_action() {
     const username = login_user.value.trim();
     const password = login_password.value.trim();
@@ -34,7 +43,11 @@ function register_action()
     admins = localStorage.getItem('admins') ? JSON.parse(localStorage.getItem('admins')) : [];
     let check_username = admins.find(admin => admin.username == login_user_register.value && admin.password == login_password_register.value);
     const id = admins.length ? admins[admins.length - 1].id + 1 : 1;
-    if(!check_username && login_password_register.value == login_password_confirm.value)
+    if(!check_username && login_password_register.value == login_password_confirm.value 
+        && login_password_register.value != "" 
+        && login_user_register.value != ""
+        && login_password_register.value.length > 6
+        && /\d/.test(login_password_register.value))
     {
         admins.push({
             id: id,
@@ -45,7 +58,19 @@ function register_action()
         login_user_register.value = "";
         login_password_register.value = "";
         login_password_confirm.value = "";
-    }else if(login_password_register.value != login_password_confirm.value)
+        change_status_sign1();
+    }else if(login_password_register.value == login_password_confirm.value && login_password_register.value != "" 
+        && login_user_register.value != ""
+        && login_password_register.value.length < 6)
+    {
+        alert('The password must be at least 6 characters.');
+    }else if(login_password_register.value == login_password_confirm.value && login_password_register.value != "" 
+        && login_user_register.value != ""
+        && !/\d/.test(login_password_register.value))
+    {
+        alert('The password must contain at least one number.');
+    }
+    else if(login_password_register.value != login_password_confirm.value)
     {
         console.log(login_password_register.value);
         console.log(login_password_confirm.value);

@@ -3,17 +3,43 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+     <link rel="stylesheet" href="../style.css">
     <title>User</title>
 </head>
-<body>
-    <div class="view">
+<body id="body_user">
+    <!-- <div class="view">
         <p></p>
         <a href=""></a>
         <button onclick="sign_out()">Dang xuat</button>
+    </div> -->
+    <div id="menu_page_users">
+        <h2><a href="">YuYa</a></h2>
+        <div class="content_menu">
+            <a href="">Men</a>
+            <a href="">Women</a>
+            <a href="">New Collection</a>
+            <a href="">On Sale</a>
+        </div>
+        <div class="feature_menu_user">
+            <a href="">Cart</a>
+            <div class="user_account">
+                <a href="" class="my_account"></a>
+                <div class="setting_user">
+                    <div>
+                        <i class="material-icons">account_circle</i>
+                        <span>My Account</span>
+                    </div>
+                    <div onclick="sign_out()">
+                        <i class="material-icons">logout</i>
+                        <span>Sign Out</span>
+                    </div>
+                </div>
+            </div>
+            <i class="material-icons">search</i>
+        </div>
     </div>
-    <div>
-
-    </div>
+    <script src="../main.js"></script>
     <script src="user.js"></script>
 </body>
 </html>
