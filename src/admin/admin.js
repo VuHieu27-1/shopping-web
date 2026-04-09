@@ -7,11 +7,19 @@ console.log(admins);
 const table_admin = document.querySelector('.table_admin');
 const feature_admin = document.querySelector('#feature_admin');
 const roles_users = document.querySelector('#roles_users');
+const admin_brand_text = document.querySelector('.admin_brand_text h1');
+const block_feature_admin = document.querySelector('.block_feature_admin');
 let check_edit_admin = -1;
 let check_action_edit = false;
 if(id_url == null)
 {
     window.location.href = `../`;
+}else
+{
+    admin_brand_text.innerHTML = 
+    `
+    ${user.username}
+    `
 }
 function render_roles()
 {
@@ -103,6 +111,7 @@ function add_users()
         });
         username.value  = "";
         password.value  = "";
+        roles.value = "";
     }else if(check_edit_admin != -1 && !check_input_empty)
     {
         admins.find(admin => admin.id == check_edit_admin).username = username.value;
@@ -111,6 +120,8 @@ function add_users()
         check_edit_admin = -1;
         username.value  = "";
         password.value  = "";
+        roles.value = "";
+        check_action_edit = false;
     }
     else if(check_username)
     {
@@ -121,6 +132,12 @@ function add_users()
     localStorage.setItem('admins', JSON.stringify(admins));
     reload_page();  
 }
+block_feature_admin.addEventListener('keydown', envent => {
+    if (envent.key === 'Enter') {
+        add_users();
+    }
+}
+);
 function edit_admin(id) {
     check_edit_admin = id;
     check_action_edit = true;

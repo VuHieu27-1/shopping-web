@@ -3,23 +3,58 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="../../style.css">
     <title>Roles Panel</title>
 </head>
-<body>
-    <div id="feature_roles">
-        <h2>Roles Management</h2>
-        <input type="text" placeholder="Role Name">
-        <button onclick="add_role()">Add New Role</button>
+<body id="body_admin">
+    <div id="menu_page_admin">
+        <div class="admin_brand">
+            <div class="admin_brand_logo">Y</div>
+            <div class="admin_brand_text">
+                <h1></h1>
+                <p>Management panel</p>
+            </div>
+        </div>
+        <a href="../" class="menu_admin_item">
+            <i class="material-icons">group</i>
+            <span>Users</span>
+        </a>
+        <a href="./" class="menu_admin_item menu_admin_item_active">
+            <i class="material-icons">settings_accessibility</i>
+            <span>Roles</span>
+        </a>
+        <button type="button" class="menu_admin_item menu_admin_button" onclick="sign_out()">
+            <i class="material-icons">logout</i>
+            <span>Sign out</span>
+        </button>
     </div>
-    <div id="info_table_roles">
-        <table class="table_roles">
-            <tr>
-                <th>Role ID</th>
-                <th>Role Name</th>
-                <th>Action</th>
-            </tr>
-        </table>
+    <div id="content_page_admin">
+        <div class="title_page_admin admin_surface">
+            <div>
+                <h1>Roles</h1>
+                <div class="admin_breadcrumb">
+                    <span>Members</span>
+                    <i class="material-icons">chevron_right</i>
+                    <span>Roles</span>
+                </div>
+            </div>
+        </div>
+        <div id="feature_roles" class="admin_panel admin_surface">
+            <div class="roles_form">
+                <input type="text" placeholder="Role Name">
+                <button type="button" class="admin_action_button" onclick="add_role()">Save Role</button>
+            </div>
+        </div>
+        <div id="info_table_roles" class="info_table_admin admin_surface">
+            <table class="table_roles">
+                <tr>
+                    <th>Role ID</th>
+                    <th>Role Name</th>
+                    <th>Action</th>
+                </tr>
+            </table>
+        </div>
     </div>
     <script src="../../main.js"></script>
     <script src="roles.js"></script>

@@ -3,31 +3,68 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="../style.css">
     <title>Admin Panel</title>
 </head>
 <body id="body_admin">
-        <div id="feature_admin_info">
-            <h2>Admin Management</h2>
-            <button><a href="./roles/" style="text-decoration: none; color: black;">Roles Page</a></button>
-            <input type="text" placeholder="User Name" class="input_user">
-            <input type="text" placeholder="Password" class="input_password">
-            <button onclick="add_users()">Add New User</button>
-            <button onclick="sign_out()">Sign out</button>
-            <select name="roles" id="roles_users">
-                <option value="" hidden>Choose Role</option>
-            </select>
+        <div id="menu_page_admin">
+            <div class="admin_brand">
+                <div class="admin_brand_logo">Y</div>
+                <div class="admin_brand_text">
+                    <h1></h1>
+                    <p>Management panel</p>
+                </div>
+            </div>
+            <a href="./" class="menu_admin_item menu_admin_item_active">
+                <i class="material-icons">group</i>
+                <span>Users</span>
+            </a>
+            <a href="./roles/" class="menu_admin_item">
+                <i class="material-icons">settings_accessibility</i>
+                <span>Roles</span>
+            </a>
+            <button type="button" class="menu_admin_item menu_admin_button" onclick="sign_out()">
+                <i class="material-icons">logout</i>
+                <span>Sign out</span>
+            </button>
         </div>
-        <div id="info_table_admin">
-            <table class="table_admin">
-                <tr>
-                    <th>ID</th>
+        <div id="content_page_admin">
+            <div class="title_page_admin admin_surface">
+                <div>
+                    <h1>Users</h1>
+                    <div class="admin_breadcrumb">
+                        <span>Members</span>
+                        <i class="material-icons">chevron_right</i>
+                        <span>Users</span>
+                    </div>
+                </div>
+            </div>
+            <div class="admin_panel admin_surface">
+                <div class="admin_search">
+                    <i class="material-icons">search</i>
+                    <input type="text" placeholder="Search">
+                </div>
+                <div class="block_feature_admin">
+                    <input type="text" placeholder="User Name" class="input_user">
+                    <input type="text" placeholder="Password" class="input_password">
+                    <select name="roles" id="roles_users">
+                        <option value="" hidden>Choose Role</option>
+                    </select>
+                    <button type="button" class="admin_action_button" onclick="add_users()">Save User</button>
+                </div>
+            </div>
+            <div class="info_table_admin admin_surface">
+                <table class="table_admin">
+                    <tr>
+                    <th width="5%">ID</th>
                     <th>Username</th>
                     <th>Password</th>
                     <th>Roles</th>
                     <th>Action</th>
-                </tr>
-            </table>
+                    </tr>
+                </table>
+            </div>
         </div>
         <script src="../main.js"></script>
         <script src="admin.js"></script>
