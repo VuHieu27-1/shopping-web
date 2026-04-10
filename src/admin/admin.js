@@ -1,5 +1,5 @@
-let urlParams = new URLSearchParams(window.location.search);
-let id_url = urlParams.get('id');
+// let urlParams = new URLSearchParams(window.location.search);
+// let id_url = urlParams.get('id');
 // let roles = localStorage.getItem('roles') ? JSON.parse(localStorage.getItem('roles')) : [];
 console.log(roles);
 // let admins = localStorage.getItem('admins') ? JSON.parse(localStorage.getItem('admins')) : [];
@@ -11,7 +11,7 @@ const admin_brand_text = document.querySelector('.admin_brand_text h1');
 const block_feature_admin = document.querySelector('.block_feature_admin');
 let check_edit_admin = -1;
 let check_action_edit = false;
-if(id_url == null)
+if(user == undefined)
 {
     window.location.href = `../`;
 }else

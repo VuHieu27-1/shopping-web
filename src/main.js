@@ -8,7 +8,7 @@ if(window.location.pathname.indexOf('admin') != -1)
 {
     if(user != undefined && user.roles_id == 2)
     {
-        window.location.href = "../users/?id=" + user.id;
+        window.location.href = "../users";
     }else if(user == undefined)
     {
         window.location.href = "../";

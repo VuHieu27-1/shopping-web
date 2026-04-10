@@ -18,9 +18,6 @@ if(user == undefined)
     `
     <a href="../">Login</a>
     `;
-}else if(user.id != id_url && user != undefined)
-{
-    window.location.href = "../";
 }
 else
 {

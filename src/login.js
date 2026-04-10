@@ -5,15 +5,17 @@ const login_password_register = document.querySelector(".login_password_register
 const login_password_confirm = document.querySelector(".login_password_confirm");
 const feature_login = document.querySelector(".feature_login");
 const feature_sign_up = document.querySelector('.feature_sign_up');
-if(user != undefined)
-{
-    if(user.roles_id == 1){
-        window.location.href = `./admin/?id=${user.id}`;
-    }else
-    {
-        window.location.href = `./users/?id=${user.id}`;
-    }
-}
+// setInterval( () => {
+// if(user != undefined)
+// {
+//     if(user.roles_id == 1){
+//         window.location.href = `./admin/`;
+//     }else
+//     {
+//         window.location.href = `./users/`;
+//     }
+// }
+// },1000);
 function login_action() {
     const username = login_user.value.trim();
     const password = login_password.value.trim();
@@ -29,9 +31,9 @@ function login_action() {
     }
     const roleId = account.roles_id;
     if (roleId == 1) {
-        window.location.href = `./admin/?id=${account.id}`;
+        window.location.href = `./admin/`;
     } else if (roleId == 2) {
-        window.location.href = `./users/?id=${account.id}`;
+        window.location.href = `./users/`;
     } else {
         alert("Role is invalid");
     }
