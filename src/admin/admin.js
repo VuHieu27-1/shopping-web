@@ -7,20 +7,9 @@ console.log(admins);
 const table_admin = document.querySelector('.table_admin');
 const feature_admin = document.querySelector('#feature_admin');
 const roles_users = document.querySelector('#roles_users');
-const admin_brand_text = document.querySelector('.admin_brand_text h1');
 const block_feature_admin = document.querySelector('.block_feature_admin');
 let check_edit_admin = -1;
 let check_action_edit = false;
-if(user == undefined)
-{
-    window.location.href = `../`;
-}else
-{
-    admin_brand_text.innerHTML = 
-    `
-    ${user.username}
-    `
-}
 function render_roles()
 {
     roles = localStorage.getItem('roles') ? JSON.parse(localStorage.getItem('roles')) : [];
@@ -74,6 +63,7 @@ function reload_page() {
             <th>ID</th>
             <th>Username</th>
             <th>Password</th>
+            <th>Detail User Id</th>
             <th>Roles</th>
             <th>Action</th>
         </tr>
@@ -84,10 +74,12 @@ function reload_page() {
                 <td>${admin.id}</td>
                 <td>${admin.username}</td>
                 <td>${admin.password}</td>
+                <td>${admin.detail_user_id}</td>
                 <td>${admin.roles_id}</td>
                 <td>
                     <button onclick="edit_admin(${admin.id})">Edit</button>
                     <button onclick="delete_admin(${admin.id})">Delete</button>
+                    <button><a href="./details_user/">Detail User</a></button>
                 </td>
             </tr>
         `;
@@ -107,6 +99,7 @@ function add_users()
             id: id, 
             username: username.value,
             password: password.value,
+            detail_user_id: -1,
             roles_id: roles.value
         });
         username.value  = "";

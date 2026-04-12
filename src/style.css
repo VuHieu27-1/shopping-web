@@ -331,6 +331,7 @@ a{
     align-items: center;
     gap: 20px;
     font-size: 25px;
+    height: 50px;
     white-space: nowrap;
 }
 .feature_menu_user .search_icon
@@ -367,6 +368,12 @@ a{
     padding: 10px;
     display: none;
     border-radius: 10px;
+}
+.user_account{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    height: 50px;
 }
 .setting_user div
 {
@@ -1159,4 +1166,135 @@ a{
     .table_roles{
         min-width: 460px;
     }
+}
+/* ====================================================================PAGE_DETAIL_USER=============================================================== */
+/* -------------------------------------------------------------------------------==================================================================== */
+#body_detail_user
+{
+    margin: 0;
+    padding: 18px;
+    display: grid;
+    grid-template-columns: 1.5fr 8fr;
+    gap: 30px;
+    grid-template-areas: 
+    "menu_detail main_detail";
+    background: linear-gradient(
+    120deg,
+    #F3E6E3 0%,
+    #E6CFCB 50%,
+    #D8B4AE 100%
+    );
+    min-height: 100dvh;
+    width: 100%;
+    box-sizing: border-box;
+    align-items: start;
+    overflow-x: hidden; 
+}
+.setting_detail_user
+{
+    grid-area: menu_detail;
+    background: rgba(255, 251, 250, 0.9);
+    border: 1px solid rgba(232, 205, 206, 0.8);
+    border-radius: 28px;
+    box-shadow: 0 18px 45px rgba(176, 126, 133, 0.14);
+    padding: 22px 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.setting_detail_user div
+{
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+.setting_detail_user span{
+    font-family: var(--font_text);
+    font-weight: 500;
+    opacity: 1;
+    font-size: 18px;
+}
+.main_content_table
+{
+    grid-area: main_detail;
+    min-height: 100dvh;
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+    margin-top: 70px;
+    gap: 20px;
+    font-family: var(--font_text);
+}
+.main_content_table .notice_info_table
+{
+    color: rgb(46, 45, 45);
+    text-align: center;
+}
+.notice_info_table h1{
+    font-size: clamp(20px, 50px, 70px);
+}
+.notice_info_table h3
+{
+    opacity: 0.7;
+    font-family: var(--font_text_user);
+}
+.table_add_info
+{
+    display: flex;
+    flex-direction: column;
+    padding: 40px;
+    width: 60%;
+}
+.info_detail_user
+{
+    position: relative;
+}
+.table_add_info div
+{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+.table_add_info input
+{
+    width: 100%;
+    height: 54px;
+    border-radius: 16px;
+    border: 1px solid #ecd5d8;
+    background: #fffdfc;
+    padding: 0 16px;
+    font-size: 16px;
+    font-family: var(--font_text);
+    box-sizing: border-box;
+}
+.table_add_info span
+{
+    opacity: 1;
+    font-family: var(--font_text_admin);
+    font-size: 16px;
+    color: #7f5f65;
+}
+.gender
+{
+    display: inline-block !important;
+}
+.gender input
+{
+    width: 20px;
+    height: 15px;
+    transform: scale(1.5);
+}
+.buttom_add_info button
+{
+    background: #dd93a3;
+    color: #4b091d;
+    border: none;
+    padding: 12px 28px;
+    border-radius: 10px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    right: 10px;
+    position: absolute;
 }

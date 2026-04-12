@@ -5,17 +5,17 @@ const login_password_register = document.querySelector(".login_password_register
 const login_password_confirm = document.querySelector(".login_password_confirm");
 const feature_login = document.querySelector(".feature_login");
 const feature_sign_up = document.querySelector('.feature_sign_up');
-// setInterval( () => {
-// if(user != undefined)
-// {
-//     if(user.roles_id == 1){
-//         window.location.href = `./admin/`;
-//     }else
-//     {
-//         window.location.href = `./users/`;
-//     }
-// }
-// },1000);
+setInterval( () => {
+if(user != undefined)
+{
+    if(user.roles_id == 1){
+        window.location.href = `./admin/`;
+    }else
+    {
+        window.location.href = `./users/`;
+    }
+}
+},500);
 function login_action() {
     const username = login_user.value.trim();
     const password = login_password.value.trim();

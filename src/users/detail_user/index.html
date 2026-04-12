@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=, initial-scale=1.0">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+     <link rel="stylesheet" href="../../style.css">
+    <title>Detail User</title>
+</head>
+<body id= "body_detail_user">
+    <div class="setting_detail_user">
+        <div class="admin_brand">
+            <div class="admin_brand_logo">Y</div>
+            <div class="admin_brand_text">
+                <h1></h1>
+                <p>Management panel</p>
+            </div>
+        </div>
+        <a href="./" class="menu_admin_item menu_admin_item_active">
+            <i class="material-icons">assignment_add</i>
+            <span>Add Info</span>
+        </a>
+        <a href="" class="menu_admin_item">
+            <i class="material-icons">view_timeline</i>
+            <span>View Info</span>
+        </a>
+    </div>
+    <div class="main_content_table">
+        <div class="notice_info_table">
+            <h1>Just a Few Details to GetStarted</h1>
+            <h3>Fill in the necessary details, and your guest will be added in no time</h3>
+        </div>
+        <div class="table_add_info admin_surface">
+            <div class="title_table">
+                <h2>Let's gather event details.</h2>
+            </div>
+            <div class="info_detail_user admin_panel">
+                <div>
+                    <span>Name</span>
+                    <input type="text" placeholder="Name" class="input_name">
+                </div>
+                <div>
+                    <span>Gender</span>
+                    <div class="gender">
+                        <input type="radio" name="radio" value="male" class="male" checked>
+                        <span>Male</span>
+                        <input type="radio" name="radio" value="female" class="female">
+                        <span>Female</span>
+                    </div>
+                </div>
+                <div>
+                    <span>Email</span>
+                    <input type="text" placeholder="@gmail.com" class="input_email">
+                </div>
+                <div>
+                    <span>Phone</span>
+                    <input type="tel" placeholder="0987654321" class="input_phone">
+                </div>
+                <div>
+                    <span>Address</span>
+                    <input type="text" placeholder="Address" class="input_address">
+                </div>
+                <div class="notify_add_success">
+                    <span></span>
+                </div>
+                <div class="buttom_add_info">
+                    <button onclick="add_details_user()">Add Info</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="../../main.js"></script>
+</body>
+</html>
