@@ -1169,7 +1169,7 @@ a{
 }
 /* ====================================================================PAGE_DETAIL_USER=============================================================== */
 /* -------------------------------------------------------------------------------==================================================================== */
-#body_detail_user
+.body_detail_user
 {
     margin: 0;
     padding: 18px;
@@ -1297,4 +1297,67 @@ a{
     transition: all 0.3s ease;
     right: 10px;
     position: absolute;
+}
+/* ============================================buttom_back============= */
+.buttom_back
+{
+    cursor: pointer;
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    top: 50px;
+    gap: 10px;
+    left: 350px;
+}
+.buttom_back span
+{
+    display: flex;
+    align-items: center;
+}
+.buttom_back button
+{
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    font-family: var(--font_text_other);
+    background: transparent;
+    border: transparent;
+    font-size: 25px;
+}
+/* ==============================================View_Info============================ */
+.view_info_user{
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+    margin: 100px;
+}
+.view_info_user h1{
+    font-size: clamp(20px, 30px, 40px);
+    font-family: var(--font_text_admin);
+}
+.title_content_info{
+    border-radius: 28px;
+    overflow: hidden;
+    box-sizing: border-box;
+    width: 70%;
+    overflow-x: auto;
+    display: block;
+}
+.table_info_user{
+    width: 100%;
+    background: #fffdfc;
+    padding: 0;
+}
+.view_info_user table th
+{
+    border: transparent;
+}
+.view_info_user table td{
+    border: transparent;
+    border-bottom: 1px solid #f0dde0;
+    padding: 18px 14px;
+    font-family: var(--font_text_admin);
+    font-size: 16px;
+    color: #7f5f65;
+    background: rgba(255, 253, 252, 0.95);
 }

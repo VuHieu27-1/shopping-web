@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+     <link rel="stylesheet" href="../../style.css">
+    <title>View Info User</title>
+</head>
+<body class= "body_detail_user">
+    <div class="setting_detail_user">
+        <div class="admin_brand">
+            <div class="admin_brand_logo">Y</div>
+            <div class="admin_brand_text">
+                <h1></h1>
+                <p>Management panel</p>
+            </div>
+        </div>
+        <a href="./" class="menu_admin_item">
+            <i class="material-icons">assignment_add</i>
+            <span>Add Info</span>
+        </a>
+        <a href="./view.html" class="menu_admin_item menu_admin_item_active">
+            <i class="material-icons">view_timeline</i>
+            <span>View Info</span>
+        </a>
+    </div>
+    <div class="view_info_user">
+        <div class="title_name">
+            <img src="" alt="">
+        </div>
+        <div class="title_content_info">
+            <table class="table_info_user">
+                <tr>
+                    <th colspan="2">Personal details</th>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div class="buttom_back" onclick="back_page()">
+        <span><i class="material-icons">arrow_back_ios_new</i></span>
+        <button>Back</button>
+    </div>
+    <script src="../../main.js"></script>
+    <script>
+        const table_info_user = document.querySelector(".table_info_user");
+        const title_name = document.querySelector(".title_name");
+        let check_info_user = details_user.find(task => task.id == user.detail_user_id);
+        console.log(user);
+        console.log(details_user)
+        function reload_page(){
+            title_name.innerHTML = `
+                <h1>${check_info_user.name}</h1>
+                <span>${check_info_user.email}</span>
+            `;
+
+            table_info_user.innerHTML=
+            `                
+                <tr>
+                    <th colspan="2">Personal details</th>
+                </tr>
+            `;
+
+            table_info_user.innerHTML +=
+                `
+                    <tr>
+                        <td>Name</td>
+                        <td>${check_info_user.name}</td>
+                    </tr>
+                    <tr>
+                        <td>Gender</td>
+                        <td>${check_info_user.gender}</td>
+                    </tr>
+                    <tr>
+                        <td>Email</td>
+                        <td>${check_info_user.email}</td>
+                    </tr>
+                    <tr>
+                        <td>Phone</td>
+                        <td>${check_info_user.phone}</td>
+                    </tr>
+                    <tr>
+                        <td>Address</td>
+                        <td>${check_info_user.address}</td>
+                    </tr>
+                `;
+        }
+        reload_page();
+    </script>
+</body>
+</html>

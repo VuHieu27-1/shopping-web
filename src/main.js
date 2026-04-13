@@ -168,3 +168,9 @@ function show_notify_add_success()
     }
     check_action_add_user = false;
 }
+// =====================BACK_PAGE=======================///
+function back_page()
+{
+    window.location.href = "../";
+}
+// ====================DETAIL_USERS======================///
