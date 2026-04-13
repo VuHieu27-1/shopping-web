@@ -4,6 +4,7 @@ let admins = localStorage.getItem('admins') ? JSON.parse(localStorage.getItem('a
 let roles = localStorage.getItem('roles') ? JSON.parse(localStorage.getItem('roles')) : [];
 let users = localStorage.getItem('users') ? JSON.parse(localStorage.getItem('users')) : [];
 const admin_brand_text = document.querySelector('.admin_brand_text h1');
+let check_action_add_user = false;
 // localStorage.clear();
 // console.log(user);
 console.log(window.location.pathname);
@@ -75,6 +76,7 @@ const input_address = document.querySelector('.input_address');
 const male = document.querySelector('.male');
 const female = document.querySelector('.female');
 const info_detail_user = document.querySelector('.info_detail_user');
+const notify_add_success = document.querySelector('.notify_add_success');
 
 function add_details_user()
 {
@@ -86,7 +88,11 @@ function add_details_user()
     {
         check_gender = "Female";
     }
-    if(input_name.value != "" && input_email.value != "" && input_phone.value != "" && input_address.value != "" && check_gender != "" && check_edit_details_user == -1)
+    let check_validate_email = ! input_email.value.includes("@");
+    let check_validate_phone = ! /^\d{10}$/.test(input_phone.value);
+    if(input_name.value != "" && input_email.value != "" && input_phone.value != "" 
+       && input_address.value != "" && check_gender != "" && check_edit_details_user == -1 
+       && !check_validate_email && !check_validate_phone)
     {
         details_user.push({
             id: id,
@@ -102,7 +108,11 @@ function add_details_user()
         input_phone.value = "";
         input_address.value = "";
         check_gender = "";
-    }else if(check_edit_details_user != -1 && input_name.value != "" && input_email.value != "" && input_phone.value != "" && input_address.value != "" && check_gender != "")
+        check_action_add_user = true;
+        show_notify_add_success();
+    }else if(check_edit_details_user != -1 && input_name.value != "" && input_email.value != "" 
+        && input_phone.value != "" && input_address.value != "" && check_gender != ""
+        && !check_validate_email && !check_validate_phone)
     {
         details_user.find(tasks => tasks.id == check_edit_details_user).name = input_name.value;
         details_user.find(tasks => tasks.id == check_edit_details_user).email = input_email.value;
@@ -115,7 +125,12 @@ function add_details_user()
         input_phone.value = "";
         input_address.value = "";
         check_gender = "";
-    }else
+    }else if(check_validate_email)    {
+        alert("Email not valid");
+    }else if(check_validate_phone)    {
+        alert("Phone not valid");
+    }
+    else
     {
         alert("Please fill in all fields");
     }
@@ -141,4 +156,15 @@ setInterval(() => {
     });
 },500);
 
-
+// notify add success=======================================================
+function show_notify_add_success()
+{
+    if(check_action_add_user)
+    {
+        notify_add_success.classList.remove('hidden_feature');
+        setTimeout(() => {
+            notify_add_success.classList.add('hidden_feature');
+        }, 3000);
+    }
+    check_action_add_user = false;
+}
