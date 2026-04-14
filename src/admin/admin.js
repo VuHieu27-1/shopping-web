@@ -41,7 +41,18 @@ function check_roles_available()
     }
 });
 }
-// setInterval(check_roles_available, 1000);
+setInterval(check_roles_available, 1000);
+setInterval(() => {
+    details_user = localStorage.getItem('details_user') ? JSON.parse(localStorage.getItem('details_user')) : [];
+    admins = localStorage.getItem('admins') ? JSON.parse(localStorage.getItem('admins')) : [];
+    admins.forEach(element => {
+        if (!details_user.find(task => task.id === element.detail_user_id)) {
+            element.detail_user_id = null;
+            localStorage.setItem('admins', JSON.stringify(admins));
+            reload_page();
+        }
+    });
+},500);
 // function user_admin()
 // {
 //     if(admins.length == 0)
@@ -99,7 +110,7 @@ function add_users()
             id: id, 
             username: username.value,
             password: password.value,
-            detail_user_id: -1,
+            detail_user_id: null,
             roles_id: roles.value
         });
         username.value  = "";

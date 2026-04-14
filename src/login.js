@@ -109,6 +109,7 @@ function change_status_sign1()
     feature_login.classList.remove('hidden_feature');
     button_login.classList.remove('hidden_feature');
     button_register.classList.add('hidden_feature');
+    login_user.focus();
 }
 function change_status_sign2()
 {

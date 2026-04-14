@@ -50,8 +50,8 @@
         console.log(details_user)
         function reload_page(){
             title_name.innerHTML = `
-                <h1>${check_info_user.name}</h1>
-                <span>${check_info_user.email}</span>
+                <h1>${check_info_user ? check_info_user.name : 'Who you are'}</h1>
+                <span>${check_info_user ? check_info_user.email : 'justone@gmail.com'}</span>
             `;
 
             table_info_user.innerHTML=
@@ -65,23 +65,23 @@
                 `
                     <tr>
                         <td>Name</td>
-                        <td>${check_info_user.name}</td>
+                        <td>${check_info_user ? check_info_user.name : 'N/A'}</td>
                     </tr>
                     <tr>
                         <td>Gender</td>
-                        <td>${check_info_user.gender}</td>
+                        <td>${check_info_user ? check_info_user.gender : 'N/A'}</td>
                     </tr>
                     <tr>
                         <td>Email</td>
-                        <td>${check_info_user.email}</td>
+                        <td>${check_info_user ? check_info_user.email : 'N/A'}</td>
                     </tr>
                     <tr>
                         <td>Phone</td>
-                        <td>${check_info_user.phone}</td>
+                        <td>${check_info_user ? check_info_user.phone : 'N/A'}</td>
                     </tr>
                     <tr>
                         <td>Address</td>
-                        <td>${check_info_user.address}</td>
+                        <td>${check_info_user ? check_info_user.address : 'N/A'}</td>
                     </tr>
                 `;
         }

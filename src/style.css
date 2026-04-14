@@ -744,6 +744,7 @@ a{
 }
 
 .title_page_admin{
+    position: relative;
     padding: 24px 28px;
 }
 
@@ -815,7 +816,36 @@ a{
     cursor: pointer;
     box-sizing: border-box;
 }
-
+.buttom_sign_out
+{
+    position: absolute;
+    right: 18px;
+    top: 40px;
+    display: flex;
+    align-content: center;
+    gap: 10px;
+    border-radius: 18px;
+    padding: 14px 16px;
+    color: #af354b;
+    transition: 0.25s ease;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    box-sizing: border-box;;
+}
+.buttom_sign_out span
+{
+    display: flex;
+    align-content: center;
+    font-family: var(--font_text);
+    font-size: 20px;
+    font-weight: 500;
+}
+.buttom_sign_out:hover
+{
+    background: rgba(175, 53, 75, 0.3);
+    color: #af737e;
+}
 .menu_admin_item i{
     font-size: 22px;
 }

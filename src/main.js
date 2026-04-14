@@ -7,7 +7,7 @@ const admin_brand_text = document.querySelector('.admin_brand_text h1');
 let check_action_add_user = false;
 // localStorage.clear();
 // console.log(user);
-console.log(window.location.pathname);
+// console.log(window.location.pathname);
 if(window.location.pathname.indexOf('admin') != -1)
 {
     if(user != undefined && user.roles_id == 2)
@@ -34,7 +34,7 @@ function user_admin()
             id: 1,
             username: 'admin',
             password: 'admin',
-            detail_user_id: -1,
+            detail_user_id: null,
             roles_id: 1
         });
         localStorage.setItem('admins', JSON.stringify(admins));
@@ -146,16 +146,6 @@ info_detail_user.addEventListener("keydown", event => {
         add_details_user();
     }
 });
-
-setInterval(() => {
-    admins.forEach(element => {
-        if (!details_user.find(task => task.id === element.detail_user_id)) {
-            element.detail_user_id = -1;
-            localStorage.setItem('admins', JSON.stringify(admins));
-        }
-    });
-},500);
-
 // notify add success=======================================================
 function show_notify_add_success()
 {
@@ -171,6 +161,6 @@ function show_notify_add_success()
 // =====================BACK_PAGE=======================///
 function back_page()
 {
-    window.location.href = "../";
+    window.history.back();
 }
 // ====================DETAIL_USERS======================///
