@@ -7,19 +7,60 @@
     <link rel="stylesheet" href="../../style.css">
     <title>Details User</title>
 </head>
-<body>
-        <div class="info_details_user">
-            <table class="table_details_user">
-                <tr>
-                    <th>ID</th>
-                    <th>Name</th>
-                    <th>Email</th>
-                    <th>Phone</th>
-                    <th>Address</th>
-                    <th>Gender</th>
-                    <th>Action</th>
-                </tr>
-            </table>
+<body class="body_user_managerment">
+        <div id="menu_page_managerment">
+            <div class="admin_brand">
+                <div class="admin_brand_logo">Y</div>
+                <div class="admin_brand_text">
+                    <h1></h1>
+                    <p>Management panel</p>
+                </div>
+            </div>
+            <a href="../" class="menu_admin_item">
+                <i class="material-icons">group</i>
+                <span>Users</span>
+            </a>
+            <a href="../roles/" class="menu_admin_item">
+                <i class="material-icons">settings_accessibility</i>
+                <span>Roles</span>
+            </a>
+            <a href="../../users/detail_user/" class="menu_admin_item">
+                <i class="material-icons">contacts</i>
+                <span>Info Admin</span>
+            </a>
+            <a href="./" class="menu_admin_item menu_admin_item_active">
+                <i class="material-icons">manage_accounts</i>
+                <span>User Managerment</span>
+            </a>
+        </div>
+        <div id="content_page_managerment">
+            <div class="title_page_admin admin_surface">
+                <div>
+                    <h1>User Management</h1>
+                    <div class="admin_breadcrumb">
+                        <span>Members</span>
+                        <i class="material-icons">chevron_right</i>
+                        <span>User Management</span>
+                    </div>
+                </div>
+                <button type="button" class="buttom_sign_out " onclick="sign_out()">
+                    <i class="material-icons">logout</i>
+                    <span>Sign out</span>
+                </button>
+            </div>
+            <div class="info_details_user">
+                <table class="table_details_user">
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Phone</th>
+                        <th>Address</th>
+                        <th>Gender</th>
+                        <th>Action</th>
+                    </tr>
+                </table>
+            </div>
         </div>
         <script src="../../main.js"></script>
         <script src="detail_user.js"></script>

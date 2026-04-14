@@ -90,7 +90,6 @@ function reload_page() {
                 <td>
                     <button onclick="edit_admin(${admin.id})">Edit</button>
                     <button onclick="delete_admin(${admin.id})">Delete</button>
-                    <button><a href="./details_user/">Detail User</a></button>
                 </td>
             </tr>
         `;

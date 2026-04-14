@@ -27,7 +27,7 @@
     </div>
     <div class="view_info_user">
         <div class="title_name">
-            <img src="" alt="">
+            <img src="../../../asset/img/avata_img.png" alt="">
         </div>
         <div class="title_content_info">
             <table class="table_info_user">
@@ -50,6 +50,7 @@
         console.log(details_user)
         function reload_page(){
             title_name.innerHTML = `
+                <img src="../../../asset/img/avata_img.png" alt="">
                 <h1>${check_info_user ? check_info_user.name : 'Who you are'}</h1>
                 <span>${check_info_user ? check_info_user.email : 'justone@gmail.com'}</span>
             `;
