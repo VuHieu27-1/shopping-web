@@ -28,7 +28,6 @@ function reload_page(){
             <td>${tasks.address}</td>
             <td>${tasks.gender}</td>
             <td>
-                <button onclick="edit_details_user(${tasks.id})">Edit</button>
                 <button onclick="delete_details_user(${tasks.id})">Delete</button>
             </td>
         </tr>

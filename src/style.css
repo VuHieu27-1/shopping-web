@@ -1343,9 +1343,9 @@ a{
     position: absolute;
     display: flex;
     justify-content: center;
-    top: 50px;
+    top: 5%;
     gap: 10px;
-    left: 350px;
+    left: 18%;
 }
 .buttom_back span
 {
@@ -1581,8 +1581,8 @@ a{
 
     .buttom_back
     {
-        left: 18px;
-        top: 18px;
+        right: -60%;
+        top: 40px;
     }
 }
 
@@ -1642,7 +1642,7 @@ a{
 
     .table_info_user
     {
-        min-width: 520px;
+        min-width: 420px;
     }
 
     .table_details_user button
@@ -1658,8 +1658,8 @@ a{
 
     .buttom_back
     {
-        position: static;
-        justify-content: flex-start;
+        top: 40px;
+        right: -50%;
     }
 }
 
@@ -1723,7 +1723,7 @@ a{
 
     .table_info_user
     {
-        min-width: 420px;
+        min-width: 320px;
     }
 }
 /* ============================================================================== */
