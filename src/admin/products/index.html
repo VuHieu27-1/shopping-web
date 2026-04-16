@@ -13,6 +13,9 @@
         <input type="text" id="input_name_product" placeholder="Product Name">
         <input type="number" id="input_quantity" placeholder="Quantity">
         <input type="number" id="input_price" placeholder="Prices">
+        <select name="types" id="types_product">
+            <option value="" hidden>Choose Type</option>
+        </select>
         <button onclick="add_product()">Add Product</button>
     </div>
     <div class="content_table_product">
@@ -21,7 +24,7 @@
                 <th>ID</th>
                 <th>Product Name</th>
                 <th>Image Product</th>
-                <th>Type Id</th>
+                <th>Type Product</th>
                 <th>Quantity</th>
                 <th>Price</th>
                 <th>Action</th>

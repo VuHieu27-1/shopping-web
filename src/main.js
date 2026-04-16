@@ -4,6 +4,7 @@ let admins = localStorage.getItem('admins') ? JSON.parse(localStorage.getItem('a
 let roles = localStorage.getItem('roles') ? JSON.parse(localStorage.getItem('roles')) : [];
 let users = localStorage.getItem('users') ? JSON.parse(localStorage.getItem('users')) : [];
 let products = localStorage.getItem('products') ? JSON.parse(localStorage.getItem('products')) : [];
+let types = localStorage.getItem('types') ? JSON.parse(localStorage.getItem('types')) : [];
 const admin_brand_text = document.querySelector('.admin_brand_text h1');
 let check_action_add_user = false;
 // localStorage.clear();
