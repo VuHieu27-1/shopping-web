@@ -5,6 +5,7 @@ const input_quantity = document.querySelector('#input_quantity');
 const input_price = document.querySelector('#input_price');
 const types_product = document.querySelector('#types_product');
 let check_edit = -1;
+let check_action_edit = false;
 window.addEventListener('storage', event =>
 {
     if(event.key == 'types')
@@ -64,7 +65,8 @@ function reload_page()
 function add_product()
 {
     const id = products.length ? products[products.length - 1].id + 1 : 1;
-    if(check_edit == -1)
+    if(check_edit == -1 && input_name_product.value != "" && input_img_product.value != "" 
+    && types_product.value != "" && input_quantity.value != "" && input_price.value != "")
     {
         products.push({
             id: id,
@@ -80,7 +82,7 @@ function add_product()
         input_quantity.value = '';
         input_price.value = '';
         types_product.value='';
-    }else if(check_edit != -1)
+    }else if(check_edit != -1 && input_name_product.value != "" && types_product.value != "" && input_quantity.value != "" && input_price.value != "")
     {
         console.log(input_name_product.value);
         products.find(product => product.id == check_edit).name = input_name_product.value;
@@ -93,6 +95,7 @@ function add_product()
         input_price.value = '';
         types_product.value='';
         check_edit = -1;
+        check_action_edit = false;
     }
 
     localStorage.setItem('products', JSON.stringify(products));
@@ -100,15 +103,23 @@ function add_product()
 }
 function delete_products(id)
 {
-    products = products.filter(product => product.id != id)
+    if(!check_action_edit)
+    {
+        products = products.filter(product => product.id != id)
+    }else
+    {
+        alert("There's another action that hasn't been completed yet.");
+    }
     localStorage.setItem('products', JSON.stringify(products));
     reload_page();
 }
 function edit_products(id)
 {
+    check_action_edit = true;
     check_edit = id;
+    console.log(products.find(product => product.id == id).image);
     input_name_product.value = products.find(product => product.id == id).name;
-    input_img_product.value = products.find(product => product.id == id).image;
+    // input_img_product.value = products.find(product => product.id == id).image;
     input_quantity.value = products.find(product => product.id == id).quantity;
     input_price.value = products.find(product => product.id == id).price;
     localStorage.setItem('products', JSON.stringify(products));
