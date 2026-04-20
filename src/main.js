@@ -62,6 +62,28 @@ function roles_default()
         localStorage.setItem('roles', JSON.stringify(roles));
     }
 }
+//add_types_produce
+function types_default()
+{
+    if(types.length == 0)
+    {
+        types.push({
+            id: 1,
+            name_types: "Men",
+            decription: "A clean and modern men’s outfit featuring a fitted shirt and tailored pants, designed for comfort and a sharp, versatile look."
+        });
+        localStorage.setItem('types', JSON.stringify(types));
+    }
+    if(types.length == 1)
+    {
+        types.push({
+            id: 2,
+            name_types: "Women",
+            decription: "A stylish women’s outfit featuring a flattering silhouette with soft, elegant details, designed for both comfort and a chic, modern look."
+        });
+        localStorage.setItem('types', JSON.stringify(types));
+    }
+}
 function sign_out()
 {
     localStorage.removeItem('user');
@@ -69,6 +91,7 @@ function sign_out()
 }
 user_admin();
 roles_default();
+types_default();
 // =============================================================================================PAGE_DETAIL_USER===========================================/////\
 let check_edit_details_user = -1;
 const input_name = document.querySelector('.input_name');
@@ -166,3 +189,4 @@ function back_page()
     window.history.back();
 }
 // ====================DETAIL_USERS======================///
+

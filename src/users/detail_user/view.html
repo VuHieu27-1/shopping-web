@@ -7,15 +7,17 @@
      <link rel="stylesheet" href="../../style.css">
     <title>View Info User</title>
 </head>
-<body class= "body_detail_user">
+<body class="body_detail_user">
     <div class="setting_detail_user">
-        <div class="admin_brand">
-            <div class="admin_brand_logo">Y</div>
-            <div class="admin_brand_text">
-                <h1></h1>
-                <p>Management panel</p>
+        <a href="../">
+            <div class="admin_brand">
+                <div class="admin_brand_logo">Y</div>
+                <div class="admin_brand_text">
+                    <h1></h1>
+                    <p>Management panel</p>
+                </div>
             </div>
-        </div>
+        </a>
         <a href="./" class="menu_admin_item">
             <i class="material-icons">assignment_add</i>
             <span>Add Info</span>
@@ -25,17 +27,25 @@
             <span>View Info</span>
         </a>
     </div>
-    <div class="view_info_user">
-        <div class="title_name">
-            <img src="../../../asset/img/avata_img.png" alt="">
+    <div class="user_view_dashboard">
+        <div class="admin_surface admin_panel">
+            <div class="title_name" style="display:flex; align-items:center; gap:18px;">
+                <img src="../../../asset/img/avata_img.png" alt="" style="width:96px; height:96px; border-radius:28px; object-fit:cover; box-shadow:0 12px 24px rgba(240,107,131,0.18);">
+                <div style="display:flex; flex-direction:column; gap:8px;">
+                    <h2 style="margin:0; font-family:var(--font_text); color:#8d4f58; font-size:32px;">User</h2>
+                    <span style="font-family:var(--font_text); color:#ab7f86; font-size:18px;">user@gmail.com</span>
+                </div>
+            </div>
         </div>
-        <div class="title_content_info">
-            <table class="table_info_user">
+        <div class="info_table_admin admin_surface">
+            <table class="table_details_user">
                 <tr>
-                    <th colspan="2">Personal details</th>
+                    <th width="30%">Field</th>
+                    <th>Value</th>
                 </tr>
             </table>
         </div>
+        <div class="info_detail_user" style="display:none;"></div>
     </div>
     <div class="buttom_back" onclick="back_page()">
         <span><i class="material-icons">arrow_back_ios_new</i></span>
@@ -43,22 +53,24 @@
     </div>
     <script src="../../main.js"></script>
     <script>
-        const table_info_user = document.querySelector(".table_info_user");
+        const table_info_user = document.querySelector(".table_details_user");
         const title_name = document.querySelector(".title_name");
         let check_info_user = details_user.find(task => task.id == user.detail_user_id);
-        console.log(user);
-        console.log(details_user)
+
         function reload_page(){
             title_name.innerHTML = `
-                <img src="../../../asset/img/avata_img.png" alt="">
-                <h1>${check_info_user ? check_info_user.name : 'Who you are'}</h1>
-                <span>${check_info_user ? check_info_user.email : 'justone@gmail.com'}</span>
+                <img src="../../../asset/img/avata_img.png" alt="" style="width:96px; height:96px; border-radius:28px; object-fit:cover; box-shadow:0 12px 24px rgba(240,107,131,0.18);">
+                <div style="display:flex; flex-direction:column; gap:8px;">
+                    <h2 style="margin:0; font-family:var(--font_text); color:#8d4f58; font-size:32px;">${check_info_user ? check_info_user.name : 'Who you are'}</h2>
+                    <span style="font-family:var(--font_text); color:#ab7f86; font-size:18px;">${check_info_user ? check_info_user.email : 'justone@gmail.com'}</span>
+                </div>
             `;
 
             table_info_user.innerHTML=
             `                
                 <tr>
-                    <th colspan="2">Personal details</th>
+                    <th width="30%">Field</th>
+                    <th>Value</th>
                 </tr>
             `;
 

@@ -18,8 +18,13 @@ function reload_page() {
                 <td>${type.name_types}</td>
                 <td>${type.decription}</td>
                 <td>
-                    <button onclick="edit_types(${type.id})">Edit</button>
-                    <button onclick="delete_types(${type.id})">Delete</button>
+                    <div class="feature_opening_setting">
+                        <i class="material-icons" onclick="open_setting_buttom(this)">more_horiz</i>
+                        <div class="buttom_setting_product">
+                            <button onclick="edit_types(${type.id})" class="buttom_edit">Edit</button>
+                            <button onclick="delete_types(${type.id})" class="buttom_delete">Delete</button>
+                        </div>
+                    </div>
                 </td>
             </tr>
         `;
@@ -63,8 +68,33 @@ function edit_types(id)
 }
 function delete_types(id)
 {
+    if(types.find(task => task.id == id).name_types == "Men" || types.find(task => task.id == id).name_types == "Women")
+    {
+        alert("You cannot delete the default types")
+        return;
+    }
     types = types.filter(type => type.id != id)
     localStorage.setItem('types', JSON.stringify(types));
     reload_page();
+}
+let check_open_setting = false;
+function open_setting_buttom(event)
+{
+    off_open_setting();
+    const buttom_setting_product = event.parentElement.querySelector('.buttom_setting_product')
+    
+    buttom_setting_product.classList.toggle('status_feature_opening_setting');
+    check_open_setting = true;
+}
+function off_open_setting() {
+    
+    let buttom_setting_product = document.querySelectorAll('.buttom_setting_product')
+
+    if (!check_open_setting) {
+        buttom_setting_product.forEach(item => {
+            item.classList.remove("status_feature_opening_setting");
+        });
+    }
+    check_open_setting = false;
 }
 reload_page();

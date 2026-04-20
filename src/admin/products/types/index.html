@@ -5,23 +5,45 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="../../../style.css">
-    <title>Type Product</title>
+    <title>Product Types</title>
 </head>
-<body>
-    <div class="feature_type_product">
-        <input type="text" id="input_name_type_product" placeholder="Type Name">
-        <textarea placeholder="Nhập nội dung..." id="decription_product"></textarea>
-        <button onclick="add_type_product()">Add Type Product</button>
-    </div>    
-    <div class="content_table_type_product">
-        <table class="table_type_product_info">
-            <tr>
-                <th>ID</th>
-                <th>Type Name</th>
-                <th>Description</th>
-                <th>Action</th>
-            </tr>
-        </table>
+<body class="body_types_product" onclick="off_open_setting()">
+    <div class="types_product_page">
+        <div class="types_product_header admin_surface">
+            <div class="types_product_title">
+                <a href="../" class="types_back_link">
+                    <i class="material-icons">arrow_back</i>
+                    <span>Back To Products</span>
+                </a>
+                <div>
+                    <h1>Product Types</h1>
+                    <div class="admin_breadcrumb">
+                        <span>Product Management</span>
+                        <i class="material-icons">chevron_right</i>
+                        <span>Types</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="feature_types" class="admin_panel admin_surface">
+            <div class="types_form">
+                <input type="text" id="input_name_type_product" placeholder="Type Name">
+                <textarea id="decription_product" placeholder="Description"></textarea>
+                <button type="button" class="admin_action_button" onclick="add_type_product()">Save Type</button>
+            </div>
+        </div>
+
+        <div class="info_table_admin admin_surface">
+            <table class="table_admin table_type_product_info">
+                <tr>
+                    <th>ID</th>
+                    <th>Type Name</th>
+                    <th>Description</th>
+                    <th>Action</th>
+                </tr>
+            </table>
+        </div>
     </div>
     <script src="../../../main.js"></script>
     <script src="./types.js"></script>

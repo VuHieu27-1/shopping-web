@@ -7,29 +7,94 @@
     <link rel="stylesheet" href="../../style.css">
     <title>Product</title>
 </head>
-<body>
-    <div class="feature_product">
-        <input type="file" id="input_img_product">
-        <input type="text" id="input_name_product" placeholder="Product Name">
-        <input type="number" id="input_quantity" placeholder="Quantity">
-        <input type="number" id="input_price" placeholder="Prices">
-        <select name="types" id="types_product">
-            <option value="" hidden>Choose Type</option>
-        </select>
-        <button onclick="add_product()">Add Product</button>
+<body id="body_admin" onclick="off_open_setting()">
+    <div id="menu_page_admin">
+        <a href="../" title="Home">
+        <div class="admin_brand">
+            <div class="admin_brand_logo">Y</div>
+            <div class="admin_brand_text">
+                <h1></h1>
+                <p>Management panel</p>
+            </div>
+        </div>
+        </a>
+        <a href="../" class="menu_admin_item">
+            <i class="material-icons">group</i>
+            <span>Users</span>
+        </a>
+        <a href="../roles/" class="menu_admin_item">
+            <i class="material-icons">settings_accessibility</i>
+            <span>Roles</span>
+        </a>
+        <a href="../admin_info/view.html" class="menu_admin_item">
+            <i class="material-icons">badge</i>
+            <span>View Admin Info</span>
+        </a>
+        <a href="../details_user/" class="menu_admin_item">
+            <i class="material-icons">manage_accounts</i>
+            <span>User Managerment</span>
+        </a>
+        <a href="./" class="menu_admin_item menu_admin_item_active" >
+            <i class="material-icons">category</i>
+            <span>Product Managerment</span>
+        </a>
     </div>
-    <div class="content_table_product">
-        <table class="table_product_info">
-            <tr>
-                <th>ID</th>
-                <th>Product Name</th>
-                <th>Image Product</th>
-                <th>Type Product</th>
-                <th>Quantity</th>
-                <th>Price</th>
-                <th>Action</th>
-            </tr>
-        </table>
+    <div id="content_page_admin">
+        <div class="title_page_admin admin_surface">
+            <div>
+                <h1>Product Info</h1>
+                <div class="admin_breadcrumb">
+                    <span>Members</span>
+                    <i class="material-icons">chevron_right</i>
+                    <span>Product Management</span>
+                </div>
+            </div>
+            <div class="title_page_admin_actions">
+                <button type="button" class="buttom_sign_out" onclick="sign_out()">
+                    <i class="material-icons">logout</i>
+                    <span>Sign out</span>
+                </button>
+            </div>
+        </div>
+        <div class="admin_surface title_page_admin">
+            <div class="page_types_produce">
+                <a href="./types/" class="admin_secondary_link">
+                    <i class="material-icons">tune</i>
+                    <span>Manage Types</span>
+                </a>
+                <select name="filter" id="filter_types" class="admin_secondary_link">
+                    <option value="" hidden>Filter Types</option>
+                    <option value="all">All</option>
+                </select>
+            </div>
+            <div class="feature_product">
+                <input type="text" id="input_name_product" placeholder="Product Name">
+                <input type="number" id="input_quantity" placeholder="Quantity">
+                <input type="number" id="input_price" placeholder="Prices">
+                <input type="file" id="input_img_product">
+                <select name="types" id="types_product">
+                    <option value="" hidden>Choose Type</option>
+                </select>
+                <button onclick="add_product()" class="admin_action_button">Add Product</button>
+            </div>
+        </div>
+        <div class="content_table_product">
+            <div class="title_table_product">
+                <i class="material-icons">circle</i>
+                <span>All Products<span>
+            </div>
+            <table class="table_product_info">
+                <tr>
+                    <th>ID</th>
+                    <th>Product Name</th>
+                    <th>Image Product</th>
+                    <th>Type Product</th>
+                    <th>Quantity</th>
+                    <th>Price</th>
+                    <th>Action</th>
+                </tr>
+            </table>
+        </div>
     </div>
     <script src="../../main.js"></script>
     <script src="./product.js"></script>
