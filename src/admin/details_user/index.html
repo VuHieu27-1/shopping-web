@@ -53,6 +53,31 @@
                     <span>Sign out</span>
                 </button>
             </div>
+            <div class="admin_panel admin_surface">
+                <div class="info_detail_user">
+                    <div class="block_feature_admin">
+                        <input type="text" placeholder="Name" class="input_name">
+                        <div style="display:flex; align-items:center; gap:14px; height:54px; border-radius:16px; border:1px solid #ecd5d8; background:#fffdfc; padding:0 16px; box-sizing:border-box; font-family:var(--font_text); color:#8d4f58;">
+                            <span style="margin:0;">Gender</span>
+                            <div class="gender" style="display:flex; align-items:center; gap:10px;">
+                                <input type="radio" name="radio" value="male" class="male" checked>
+                                <span style="margin:0;">Male</span>
+                                <input type="radio" name="radio" value="female" class="female">
+                                <span style="margin:0;">Female</span>
+                            </div>
+                        </div>
+                        <input type="email" placeholder="@gmail.com" class="input_email">
+                        <input type="tel" placeholder="0987654321" class="input_phone">
+                    </div>
+                    <div class="block_feature_admin" style="grid-template-columns: 3fr 1fr; margin-top: 14px;">
+                        <input type="text" placeholder="Address" class="input_address">
+                        <button type="button" class="admin_action_button" onclick="add_details_user()">Save Info</button>
+                    </div>
+                    <div class="notify_add_success hidden_feature" style="margin-top: 16px;">
+                        <span style="color: rgb(55, 209, 55); font-family: var(--font_text); font-weight: 700;">Admin details have been successfully added.</span>
+                    </div>
+                </div>
+            </div>
             <div class="info_table_admin admin_surface">
                 <table class="table_details_user">
                     <tr>

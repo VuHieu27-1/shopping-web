@@ -28,6 +28,7 @@ function reload_page(){
             <td>${tasks.address}</td>
             <td>${tasks.gender}</td>
             <td>
+                <button onclick="edit_details_user(${tasks.id})">Edit</button>            
                 <button onclick="delete_details_user(${tasks.id})">Delete</button>
             </td>
         </tr>
@@ -42,6 +43,7 @@ function delete_details_user(id)
 }
 function edit_details_user(id)
 {
+    check_edit_details_user = id;
     input_name.value = details_user.find(tasks => tasks.id == id).name;
     input_email.value = details_user.find(tasks => tasks.id == id).email;
     input_phone.value = details_user.find(tasks => tasks.id == id).phone;

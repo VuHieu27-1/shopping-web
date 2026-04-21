@@ -137,6 +137,7 @@ function add_details_user()
         check_gender = "";
         check_action_add_user = true;
         show_notify_add_success();
+        window.location.reload();
     }else if(check_edit_details_user != -1 && input_name.value != "" && input_email.value != "" 
         && input_phone.value != "" && input_address.value != "" && check_gender != ""
         && !check_validate_email && !check_validate_phone)
@@ -166,6 +167,7 @@ function add_details_user()
     localStorage.setItem('user', JSON.stringify(user));
     localStorage.setItem("details_user", JSON.stringify(details_user));
     localStorage.setItem('admins', JSON.stringify(admins));
+    window.location.reload();
 }
 info_detail_user.addEventListener("keydown", event => {
     if(event.key == 'Enter')
