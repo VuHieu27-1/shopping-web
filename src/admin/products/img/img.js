@@ -1,15 +1,38 @@
 const table_image = document.querySelector('.table_image');
 const input_image_products = document.querySelector('#input_image_products');
 const file_image = document.querySelector('#file_image');
-console.log(product);
-console.log(products);
+const image_product_id = document.querySelector('#image_product_id');
+const image_product_name = document.querySelector('#image_product_name');
+const image_total = document.querySelector('#image_total');
+
 // localStorage.removeItem("images");
 if(product == undefined)
 {
     window.location.href = "../";
 }
+window.addEventListener('storage', event =>
+{
+    if(event.key == 'products')
+    {
+        images = localStorage.getItem('images') ? JSON.parse(localStorage.getItem('images')) : [];
+        products = localStorage.getItem('products') ? JSON.parse(localStorage.getItem('products')) : [];
+        images.forEach(element => {
+            const product_img = products.find(product => product.id == element.product_id && product.name == element.product_name);
+            if(product_img == undefined)
+            {
+                delete_images(element.id);
+            }
+            console.log(product_img);
+        });
+        localStorage.setItem('images', JSON.stringify(images));
+        reload_page();
+    }
+});
 function reload_page()
 {
+    image_product_id.innerHTML = product.id;
+    image_product_name.innerHTML = product.name;
+    image_total.innerHTML = images.filter(element => element.product_id == product.id && element.product_name == product.name).length;
     table_image.innerHTML = 
     `
         <tr>
@@ -22,21 +45,22 @@ function reload_page()
         </tr>
     `;
     images.forEach(element => {
-        table_image.innerHTML +=
-        `
-            <tr>
-                <td>${element.id}</td>
-                <td>${element.name}</td>
-                <td>${element.path}</td>
-                <td>${element.product_id}</td>
-                <td>${element.product_name}</td>
-                <td>
-                    <button onclick="edit_images(${element.id})">Edit</button>
-                    <button onclick="delete_images(${element.id})">Delete</button>
-                </td>
-            </tr>
-
-        `
+        if(element.product_id == product.id && element.product_name == product.name)
+        {
+            table_image.innerHTML +=
+            `
+                <tr>
+                    <td>${element.id}</td>
+                    <td>${element.name}</td>
+                    <td>${element.path}</td>
+                    <td>${element.product_id}</td>
+                    <td>${element.product_name}</td>
+                    <td>
+                        <button onclick="delete_images(${element.id})">Delete</button>
+                    </td>
+                </tr>
+            `
+        }
     });
 }
 
@@ -51,18 +75,13 @@ function add_image()
         product_id: product.id,
         product_name: product.name
     });
-    product.image_id = id;
-    product.image_path = file_image_index[2];
     localStorage.setItem('images', JSON.stringify(images));
-    localStorage.setItem('product', JSON.stringify(product));
     reload_page();
 }
 function delete_images(id)
 {
     images = images.filter(task => task.id != id);
     localStorage.setItem('images', JSON.stringify(images));
-    // localStorage.setItem('product', JSON.stringify(product));
-    // localStorage.setItem('products', JSON.stringify(products));
     reload_page();
 }
 reload_page();

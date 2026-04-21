@@ -7,20 +7,66 @@
     <link rel="stylesheet" href="../../../style.css">
     <title>Image Products</title>
 </head>
-<body>
-    <div class="feature_image_product">
-        <input type="text" id="input_image_products">
-        <input type="file" id="file_image">
-        <button onclick="add_image()">Add Images</button>
-    </div>
-    <div class="content_table_image">
-        <table class="table_image">
-            <tr>
-                <th>Id</th>
-                <th>Image Name</th>
-                <th>Image Path</th>
-            </tr>
-        </table>
+<body class="image_management_page">
+    <div class="image_page_shell">
+        <div class="image_page_header">
+            <div class="image_page_hidden_brand admin_brand_text">
+                <h1></h1>
+                <p>Management panel</p>
+            </div>
+
+            <a href="../" class="image_back_link">
+                <i class="material-icons">arrow_back</i>
+                <span>Back To Products</span>
+            </a>
+
+            <div class="image_page_heading">
+                <h1>Product Images</h1>
+                <div class="image_page_breadcrumb">
+                    <span>Product Management</span>
+                    <i class="material-icons">chevron_right</i>
+                    <span>Images</span>
+                </div>
+            </div>
+
+            <div class="image_page_meta">
+                <div class="image_page_meta_item">
+                    <span>Product ID</span>
+                    <b id="image_product_id">-</b>
+                </div>
+                <div class="image_page_meta_item">
+                    <span>Product Name</span>
+                    <b id="image_product_name">-</b>
+                </div>
+                <div class="image_page_meta_item">
+                    <span>Total Images</span>
+                    <b id="image_total">0</b>
+                </div>
+            </div>
+        </div>
+
+        <div class="image_page_form_card">
+            <div class="feature_image_product">
+                <input type="text" id="input_image_products" placeholder="Image Name">
+                <input type="file" id="file_image">
+                <button onclick="add_image()" class="image_save_button">Save Image</button>
+            </div>
+        </div>
+
+        <div class="image_table_card">
+            <div class="image_table_scroll">
+                <table class="table_image">
+                    <tr>
+                        <th>ID</th>
+                        <th>Image Name</th>
+                        <th>Image Path</th>
+                        <th>Product ID</th>
+                        <th>Product Name</th>
+                        <th>Action</th>
+                    </tr>
+                </table>
+            </div>
+        </div>
     </div>
     <script src="../../../main.js"></script>
     <script src="./img.js"></script>

@@ -7,14 +7,31 @@ const types_product = document.querySelector('#types_product');
 const filter_types = document.querySelector('#filter_types');
 let check_edit = -1;
 let check_action_edit = false;
+console.log(images);
 window.addEventListener('storage', event =>
 {
     if(event.key == 'types')
     {
+        types = localStorage.getItem('types') ? JSON.parse(localStorage.getItem('types')) : [];
         render_types();
         reload_page();
     }
+    if(event.key == 'images' || event.key == 'products')
+    {
+        images = localStorage.getItem('images') ? JSON.parse(localStorage.getItem('images')) : [];
+        products = localStorage.getItem('products') ? JSON.parse(localStorage.getItem('products')) : [];
+        sync_products_with_images();
+        reload_page();
+    }
 });
+function sync_products_with_images()
+{
+    products.forEach(element => {
+        const image_product = images.filter(image => image.product_id == element.id && image.product_name == element.name);
+        element.image_path = image_product.map(image => image.path).join("<br>");
+    });
+    localStorage.setItem('products', JSON.stringify(products));
+}
 function check_types_product()
 {
     let check_types;
@@ -28,7 +45,6 @@ function check_types_product()
         }
     }); 
 }
-setInterval(check_types_product, 500);
 function render_types()
 {
     filter_types.innerHTML =
@@ -113,7 +129,6 @@ function add_product()
             image_path: '',
             type_id: types_product.value,
             type_name: types_product.options[types_product.selectedIndex].text,
-            image_id: null,
             quantity: input_quantity.value,
             price: input_price.value
         });
@@ -174,29 +189,6 @@ function add_images(id)
     localStorage.setItem('product', JSON.stringify(product));
 }
 // localStorage.removeItem('images');
-window.addEventListener('storage', event => {
-    images = localStorage.getItem('images') ? JSON.parse(localStorage.getItem('images')) : [];
-    if(event.key == 'images')
-    {
-        console.log(images);
-        console.log(products);
-        products.forEach(element => {
-            for(let i = 0; i < images.length; i++)
-            {
-                if(images[i].product_id == element.id)
-                {
-                    if(!element.image_path.includes(images[i].path))
-                    {
-                        element.image_path += images[i].path + "<br>";
-                    }
-                }
-            }
-            localStorage.setItem('products', JSON.stringify(products));
-            reload_page();
-        });
-    }
-
-});
 let check_open_setting = false;
 function open_setting_buttom(event)
 {
@@ -262,5 +254,7 @@ filter_types.addEventListener("change", function () {
         }
     });
 });
+check_types_product();
+sync_products_with_images();
 render_types();
 reload_page();

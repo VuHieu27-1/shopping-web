@@ -71,7 +71,7 @@ function types_default()
     {
         types.push({
             id: 1,
-            name_types: "Men",
+            name_types: "men",
             decription: "A clean and modern men’s outfit featuring a fitted shirt and tailored pants, designed for comfort and a sharp, versatile look."
         });
         localStorage.setItem('types', JSON.stringify(types));
@@ -80,7 +80,7 @@ function types_default()
     {
         types.push({
             id: 2,
-            name_types: "Women",
+            name_types: "women",
             decription: "A stylish women’s outfit featuring a flattering silhouette with soft, elegant details, designed for both comfort and a chic, modern look."
         });
         localStorage.setItem('types', JSON.stringify(types));
