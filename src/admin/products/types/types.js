@@ -40,6 +40,7 @@ function add_type_product() {
             name_types: input_name_type_product.value,
             decription: decription_product.value
         });
+        
         input_name_type_product.value  = "";
         decription_product.value = "";
 

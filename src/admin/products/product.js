@@ -60,6 +60,7 @@ function render_types()
 }
 function reload_page()
 {
+    localStorage.removeItem('product');
     table_product_info.innerHTML = 
     `
         <tr>
@@ -78,7 +79,7 @@ function reload_page()
             <tr>
                 <td>${product.id}</td>
                 <td>${product.name}</td>
-                <td>${product.image}</td>
+                <td>${product.image_path}</td>
                 <td class="feature_types">
                     ${product.type_name}
                     <h3 class="note_types_product">${types.find(task => task.id == product.type_id).decription}</h3>
@@ -89,6 +90,7 @@ function reload_page()
                     <div class="feature_opening_setting">
                         <i class="material-icons" onclick="open_setting_buttom(this)">more_horiz</i>
                         <div class="buttom_setting_product">
+                            <a href="./img"><button onclick="add_images(${product.id})" class="add_image">Add image</button></a>
                             <button onclick="edit_products(${product.id})" class="buttom_edit">Edit</button>
                             <button onclick="delete_products(${product.id})" class="buttom_delete">Delete</button>
                         </div>
@@ -102,20 +104,20 @@ function reload_page()
 function add_product()
 {
     const id = products.length ? products[products.length - 1].id + 1 : 1;
-    if(check_edit == -1 && input_name_product.value != "" && input_img_product.value != "" 
-    && types_product.value != "" && input_quantity.value != "" && input_price.value != "")
+    if(check_edit == -1 && input_name_product.value != "" && types_product.value != "" 
+        && input_quantity.value != "" && input_price.value != "")
     {
         products.push({
             id: id,
             name: input_name_product.value,
-            image: input_img_product.value,
+            image_path: '',
             type_id: types_product.value,
             type_name: types_product.options[types_product.selectedIndex].text,
+            image_id: null,
             quantity: input_quantity.value,
             price: input_price.value
         });
         input_name_product.value = '';
-        input_img_product.value = '';
         input_quantity.value = '';
         input_price.value = '';
         types_product.value='';
@@ -129,7 +131,6 @@ function add_product()
         products.find(product => product.id == check_edit).type_id = types_product.value;
         products.find(product => product.id == check_edit).type_name = types_product.options[types_product.selectedIndex].text;
         input_name_product.value = '';
-        input_img_product.value = '';
         input_quantity.value = '';
         input_price.value = '';
         types_product.value='';
@@ -166,6 +167,36 @@ function edit_products(id)
     localStorage.setItem('products', JSON.stringify(products));
     reload_page();
 }
+function add_images(id)
+{
+    let product_img = products.find(task => task.id == id);
+    product = product_img;
+    localStorage.setItem('product', JSON.stringify(product));
+}
+// localStorage.removeItem('images');
+window.addEventListener('storage', event => {
+    images = localStorage.getItem('images') ? JSON.parse(localStorage.getItem('images')) : [];
+    if(event.key == 'images')
+    {
+        console.log(images);
+        console.log(products);
+        products.forEach(element => {
+            for(let i = 0; i < images.length; i++)
+            {
+                if(images[i].product_id == element.id)
+                {
+                    if(!element.image_path.includes(images[i].path))
+                    {
+                        element.image_path += images[i].path + "<br>";
+                    }
+                }
+            }
+            localStorage.setItem('products', JSON.stringify(products));
+            reload_page();
+        });
+    }
+
+});
 let check_open_setting = false;
 function open_setting_buttom(event)
 {
@@ -212,7 +243,7 @@ filter_types.addEventListener("change", function () {
                 <tr>
                     <td>${product.id}</td>
                     <td>${product.name}</td>
-                    <td>${product.image}</td>
+                    <td>${product.image_path}</td>
                     <td>${product.type_name}</td>
                     <td>${product.quantity}</td>
                     <td>${product.price}</td>
@@ -220,6 +251,7 @@ filter_types.addEventListener("change", function () {
                         <div class="feature_opening_setting">
                             <i class="material-icons" onclick="open_setting_buttom(this)">more_horiz</i>
                             <div class="buttom_setting_product">
+                                <button onclick="add_images(${product.id})" class="add_image">Add image</button>
                                 <button onclick="edit_products(${product.id})" class="buttom_edit">Edit</button>
                                 <button onclick="delete_products(${product.id})" class="buttom_delete">Delete</button>
                             </div>
