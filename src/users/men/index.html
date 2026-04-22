@@ -7,20 +7,22 @@
     <link rel="stylesheet" href="../../style.css">
     <title>Men</title>
 </head>
-<body id="body_men_page" class="body_men_page">
+<body id="body_men_page" class="body_men_page collection_theme_men">
     <div class="open_side_bar">
         <i class="material-icons open_icon">arrow_back_ios</i>
     </div>
     <div class="side_bar_menu">
-        <div class="side_bar_brand">
-            <div class="side_bar_brand_mark">Y</div>
-            <div class="side_bar_brand_text">
-                <h3>YuYa</h3>
-                <span>Collection Menu</span>
+        <a href="../">
+            <div class="side_bar_brand">
+                <div class="side_bar_brand_mark">Y</div>
+                <div class="side_bar_brand_text">
+                    <h3>YuYa</h3>
+                    <span>Collection Menu</span>
+                </div>
             </div>
-        </div>
+        </a>
         <div class="side_bar_links">
-            <a href="./" class="side_bar_item">
+            <a href="./" class="side_bar_item side_bar_item_active_user">
                 <i class="material-icons">checkroom</i>
                 <span>Men</span>
             </a>
@@ -53,10 +55,12 @@
                 <span class="my_account_side"></span>
             </div>
             <div class="side_bar_links side_bar_account_actions">
-                <div class="side_bar_item">
-                    <i class="material-icons">badge</i>
-                    <span>My Account</span>
-                </div>
+                <a href="../detail_user/">
+                    <div class="side_bar_item">
+                        <i class="material-icons">badge</i>
+                        <span>My Account</span>
+                    </div>
+                </a>
                 <div class="side_bar_item" onclick="sign_out()">
                     <i class="material-icons">logout</i>
                     <span>Sign Out</span>
@@ -64,20 +68,39 @@
             </div>
         </div>
     </div>
-    <div class="menu_title">
-        <div class="buttom_search">
-            <input type="text">
-        </div>
-        <div class="side_menu_right">
 
+    <div class="collection_shell">
+        <div class="collection_dashboard">
+            <div class="menu_title collection_topbar">
+                <label class="buttom_search collection_search">
+                    <i class="material-icons">search</i>
+                    <input type="text" class="collection_search_input" placeholder="Search curated products...">
+                </label>
+                <div class="side_menu_right collection_actions">
+                    <button type="button" class="collection_icon_button" aria-label="Notifications">
+                        <i class="material-icons">notifications_none</i>
+                    </button>
+                    <div class="collection_profile_card">
+                        <div>
+                            <strong class="collection_profile_name"></strong>
+                            <span class="collection_profile_role">CURATION LEAD</span>
+                        </div>
+                        <img src="../../../asset/img/avata_img.png" alt="Profile">
+                    </div>
+                </div>
+            </div>
+
+            <div class="title_page_men collection_heading">
+                <h2></h2>
+                <span>Manage your digital atelier's inventory and curation settings.</span>
+            </div>
+
+            <div class="collection_catalog_card">
+                <div class="js-collection-inventory collection_inventory"></div>
+            </div>
         </div>
     </div>
-    <div class="title_page_men">
-        <h1>Welcom back, Darina!</h1>
-        <span>Shopping Now</span>
-    </div>
-    <div class="content_inventory_ỉtem">
-    </div>
+
     <script src="../../main.js"></script>
     <script src="../user.js"></script>
     <script src="../page_title_user.js"></script>

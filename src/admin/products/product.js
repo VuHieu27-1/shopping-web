@@ -5,6 +5,7 @@ const input_quantity = document.querySelector('#input_quantity');
 const input_price = document.querySelector('#input_price');
 const types_product = document.querySelector('#types_product');
 const filter_types = document.querySelector('#filter_types');
+const feature_product = document.querySelector('.feature_product');
 let check_edit = -1;
 let check_action_edit = false;
 console.log(images);
@@ -159,6 +160,14 @@ function add_product()
     localStorage.setItem('products', JSON.stringify(products));
     reload_page();
 }
+
+feature_product.addEventListener('keydown', event => {
+    if(event.key == 'Enter')
+    {
+        add_product();
+    }
+});
+
 function delete_products(id)
 {
     if(!check_action_edit)
