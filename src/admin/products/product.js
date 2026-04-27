@@ -5,10 +5,11 @@ const input_quantity = document.querySelector('#input_quantity');
 const input_price = document.querySelector('#input_price');
 const types_product = document.querySelector('#types_product');
 const filter_types = document.querySelector('#filter_types');
+const input_area = document.querySelector("#input_area");
 const feature_product = document.querySelector('.feature_product');
 let check_edit = -1;
 let check_action_edit = false;
-console.log(images);
+// console.log(images);
 window.addEventListener('storage', event =>
 {
     if(event.key == 'types')
@@ -28,8 +29,8 @@ window.addEventListener('storage', event =>
 function sync_products_with_images()
 {
     products.forEach(element => {
-        const image_product = images.filter(image => image.product_id == element.id && image.product_name == element.name);
-        element.image_path = image_product.map(image => image.path).join("<br>");
+        const image_product = images.filter(image => image.product_id == element.id);
+        element.image_path = image_product.map(image => `<img src="../../../asset/img/${image.path}" style="width:100px; height:100px; object-fit:cover;">`).join(" ");
     });
     localStorage.setItem('products', JSON.stringify(products));
 }
@@ -86,6 +87,7 @@ function reload_page()
             <th>Image Product</th>
             <th>Type Product</th>
             <th>Quantity</th>
+            <th>Area</th>
             <th>Price</th>
             <th>Action</th>
         </tr>
@@ -102,12 +104,13 @@ function reload_page()
                     <h3 class="note_types_product">${types.find(task => task.id == product.type_id).decription}</h3>
                 </td>
                 <td>${product.quantity}</td>
+                <td>${product.area}</td>
                 <td>${product.price}</td>
                 <td>
                     <div class="feature_opening_setting">
                         <i class="material-icons" onclick="open_setting_buttom(this)">more_horiz</i>
                         <div class="buttom_setting_product">
-                            <a href="./img"><button onclick="add_images(${product.id})" class="add_image">Add image</button></a>
+                            <button type="button" onclick="add_images(${product.id})" class="add_image">Add image</button>
                             <button onclick="edit_products(${product.id})" class="buttom_edit">Edit</button>
                             <button onclick="delete_products(${product.id})" class="buttom_delete">Delete</button>
                         </div>
@@ -122,7 +125,7 @@ function add_product()
 {
     const id = products.length ? products[products.length - 1].id + 1 : 1;
     if(check_edit == -1 && input_name_product.value != "" && types_product.value != "" 
-        && input_quantity.value != "" && input_price.value != "")
+        && input_quantity.value != "" && input_price.value != "" && input_area.value != "")
     {
         products.push({
             id: id,
@@ -130,6 +133,7 @@ function add_product()
             image_path: '',
             type_id: types_product.value,
             type_name: types_product.options[types_product.selectedIndex].text,
+            area: input_area.value,
             quantity: input_quantity.value,
             price: input_price.value
         });
@@ -137,19 +141,22 @@ function add_product()
         input_quantity.value = '';
         input_price.value = '';
         types_product.value='';
+        input_area.value='';
     }else if(check_edit != -1 && input_name_product.value != "" 
-    && types_product.value != "" && input_quantity.value != "" && input_price.value != "")
+    && types_product.value != "" && input_quantity.value != "" && input_price.value != "" && input_area.value != "")
     {
         console.log(input_name_product.value);
         products.find(product => product.id == check_edit).name = input_name_product.value;
         products.find(product => product.id == check_edit).quantity = input_quantity.value;
         products.find(product => product.id == check_edit).price = input_price.value;   
         products.find(product => product.id == check_edit).type_id = types_product.value;
+        products.find(product => product.id == check_edit).area = input_area.value;
         products.find(product => product.id == check_edit).type_name = types_product.options[types_product.selectedIndex].text;
         input_name_product.value = '';
         input_quantity.value = '';
         input_price.value = '';
         types_product.value='';
+        input_area.value='';
         check_edit = -1;
         check_action_edit = false;
     }else
@@ -188,14 +195,14 @@ function edit_products(id)
     input_quantity.value = products.find(product => product.id == id).quantity;
     input_price.value = products.find(product => product.id == id).price;
     types_product.value = products.find(product => product.id == id).type_id;
+    input_area.value = products.find(product => product.id == id).area;
     localStorage.setItem('products', JSON.stringify(products));
     reload_page();
 }
 function add_images(id)
 {
-    let product_img = products.find(task => task.id == id);
-    product = product_img;
-    localStorage.setItem('product', JSON.stringify(product));
+    console.log(id);
+    window.location.href = `./img/index.html?id=${id}`
 }
 // localStorage.removeItem('images');
 let check_open_setting = false;
@@ -232,6 +239,7 @@ filter_types.addEventListener("change", function () {
                 <th>Image Product</th>
                 <th>Type Product</th>
                 <th>Quantity</th>
+                <th>Area</th>
                 <th>Price</th>
                 <th>Action</th>
             </tr>
@@ -247,6 +255,7 @@ filter_types.addEventListener("change", function () {
                     <td>${product.image_path}</td>
                     <td>${product.type_name}</td>
                     <td>${product.quantity}</td>
+                    <td>${product.area}</td>
                     <td>${product.price}</td>
                     <td>
                         <div class="feature_opening_setting">

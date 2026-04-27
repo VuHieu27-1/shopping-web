@@ -21,14 +21,16 @@ if(details_user.find(task => task.id == user.detail_user_id))
 console.log(products);
 function reload_page()
 {
-    products = localStorage.getItem('products') ? JSON.parse(localStorage.getItem('products')) : [];
+    localStorage.setItem('products', JSON.stringify(products));
     collection_catalog_card.innerHTML = "";
     products.forEach(element => {
+    const image_product = images.filter(image => image.product_id == element.id);
+    element.image_path = image_product.map(image => image.path).join(",");
     if(element.type_name == window.location.pathname.split('/')[3]){
         collection_catalog_card.innerHTML +=
         `
             <div class="item_men" onclick="open_item_details(${element.id})">
-                <img src="../../../asset/img/${element.image_path.split("<br>")[0]}" alt="">
+                <img src="../../../asset/img/${element.image_path.split(",")[0]}"></img>
                 <h3>${element.name}</h3>
                 <span>${element.type_name}</span>
                 <h3>$ ${element.price} VND</h3>

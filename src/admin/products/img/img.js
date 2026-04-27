@@ -4,20 +4,22 @@ const file_image = document.querySelector('#file_image');
 const image_product_id = document.querySelector('#image_product_id');
 const image_product_name = document.querySelector('#image_product_name');
 const image_total = document.querySelector('#image_total');
-
-// localStorage.removeItem("images");
-if(product == undefined)
+const url_Params = new URLSearchParams(window.location.search);
+const url_id = url_Params.get("id");
+console.log(url_id);
+const product_img = products.find(task => task.id == url_id);
+if(url_id == undefined || !product_img)
 {
     window.location.href = "../";
 }
 window.addEventListener('storage', event =>
 {
-    if(event.key == 'products')
+    if(event.key == 'products' || event.key == 'images')
     {
         images = localStorage.getItem('images') ? JSON.parse(localStorage.getItem('images')) : [];
         products = localStorage.getItem('products') ? JSON.parse(localStorage.getItem('products')) : [];
         images.forEach(element => {
-            const product_img = products.find(product => product.id == element.product_id && product.name == element.product_name);
+            const product_img = products.find(product => product.id == element.product_id);
             if(product_img == undefined)
             {
                 delete_images(element.id);
@@ -30,9 +32,9 @@ window.addEventListener('storage', event =>
 });
 function reload_page()
 {
-    image_product_id.innerHTML = product.id;
-    image_product_name.innerHTML = product.name;
-    image_total.innerHTML = images.filter(element => element.product_id == product.id && element.product_name == product.name).length;
+    image_product_id.innerHTML = product_img.id;
+    image_product_name.innerHTML = product_img.name;
+    image_total.innerHTML = images.filter(element => element.product_id == product_img.id && element.product_name == product_img.name).length;
     table_image.innerHTML = 
     `
         <tr>
@@ -45,7 +47,7 @@ function reload_page()
         </tr>
     `;
     images.forEach(element => {
-        if(element.product_id == product.id && element.product_name == product.name)
+        if(element.product_id == product_img.id)
         {
             table_image.innerHTML +=
             `
@@ -63,18 +65,26 @@ function reload_page()
         }
     });
 }
-
+console.log(images.length);
 function add_image()
 {
     const id = images.length ? images[images.length - 1].id + 1 : 1;
     let file_image_index = file_image.value.split("\\")
-    images.push({
-        id: id,
-        name: input_image_products.value,
-        path: file_image_index[2],
-        product_id: product.id,
-        product_name: product.name
-    });
+    if(input_image_products.value != "" || file_image.value != "")
+    {
+        images.push({
+            id: id,
+            name: input_image_products.value,
+            path: file_image_index[2],
+            product_id: product_img.id,
+            product_name: product_img.name
+        });
+        input_image_products.value = '';
+        file_image.value = '';
+    }else
+    {
+        alert('Please fill in all fields.');
+    }
     localStorage.setItem('images', JSON.stringify(images));
     reload_page();
 }
