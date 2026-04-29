@@ -5,9 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="../../style.css">
-    <title>Men</title>
+    <title>My Cart</title>
 </head>
-<body id="body_men_page" class="body_men_page collection_theme_men">
+<body class="cart_page body_men_page collection_theme_men">
     <div class="open_side_bar">
         <i class="material-icons open_icon">arrow_back_ios</i>
     </div>
@@ -22,7 +22,7 @@
             </div>
         </a>
         <div class="side_bar_links">
-            <a href="./" class="side_bar_item side_bar_item_active_user">
+            <a href="../men" class="side_bar_item">
                 <i class="material-icons">checkroom</i>
                 <span>Men</span>
             </a>
@@ -40,7 +40,7 @@
             </a>
         </div>
         <div class="side_bar_links side_bar_links_secondary">
-            <a href="../cart/" class="side_bar_item">
+            <a href="" class="side_bar_item side_bar_item_active_user">
                 <i class="material-icons">shopping_cart</i>
                 <span>Cart</span>
             </a>
@@ -68,14 +68,26 @@
             </div>
         </div>
     </div>
+    <div class="admin_brand_text" style="display:none"><h1></h1></div>
+    <div class="info_detail_user" style="display:none">
+        <input class="input_name">
+        <input class="input_email">
+        <input class="input_phone">
+        <input class="input_address">
+        <input type="radio" class="male">
+        <input type="radio" class="female">
+    </div>
+    <span class="notify_add_success hidden_feature" style="display:none"></span>
+    <div class="collection_catalog_card" style="display:none"></div>
+    <div class="title_page_men" style="display:none"><h2></h2></div>
 
     <div class="collection_shell">
         <div class="collection_dashboard">
+
             <div class="menu_title collection_topbar">
-                <label class="buttom_search collection_search">
-                    <i class="material-icons">search</i>
-                    <input type="text" class="collection_search_input" placeholder="Search curated products...">
-                </label>
+                <div class="cart_topbar_left">
+                    <h2 class="cart_heading">My Cart</h2>
+                </div>
                 <div class="side_menu_right collection_actions">
                     <button type="button" class="collection_icon_button" aria-label="Notifications">
                         <i class="material-icons">notifications_none</i>
@@ -89,20 +101,41 @@
                     </div>
                 </div>
             </div>
-
-            <div class="title_page_men collection_heading">
-                <h2></h2>
-                <span>Manage your digital atelier's inventory and curation settings.</span>
+            <div class="item_back_link" onclick="back_item()">
+                <i class="material-icons">arrow_back</i>
+                <span>Back Page</span>
             </div>
 
-            <div class="collection_catalog_card">
-                <div class="js-collection-inventory collection_inventory"></div>
+            <div class="cart_content_grid">
+                <div class="cart_items_card">
+                    <div class="table_view_cart"></div>
+                </div>
+                <div class="cart_summary_card">
+                    <h3 class="cart_summary_title">Order Summary</h3>
+                    <div class="cart_summary_row">
+                        <span class="cart_summary_label">Shipping fee</span>
+                        <span class="cart_summary_value">$ 0.00</span>
+                    </div>
+                    <div class="cart_summary_divider"></div>
+                    <div class="cart_summary_row cart_total_row">
+                        <span class="cart_total_label">Total</span>
+                        <span class="cart_total_value result_price">—</span>
+                    </div>
+                    <div class="cart_actions">
+                        <button class="cart_btn_primary">
+                            <i class="material-icons">shopping_bag</i>
+                            Checkout
+                        </button>
+                    </div>
+                </div>
+
             </div>
         </div>
     </div>
 
     <script src="../../main.js"></script>
-    <script src="../user.js"></script>
     <script src="../page_title_user.js"></script>
+    <script src="../user.js"></script>
+    <script src="./cart.js"></script>
 </body>
 </html>

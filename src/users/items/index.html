@@ -41,7 +41,7 @@
             </a>
         </div>
         <div class="side_bar_links side_bar_links_secondary">
-            <a href="" class="side_bar_item">
+            <a href="../cart/" class="side_bar_item">
                 <i class="material-icons">shopping_cart</i>
                 <span>Cart</span>
             </a>
@@ -82,7 +82,7 @@
                     <div class="collection_profile_card">
                         <div>
                             <strong class="collection_profile_name"></strong>
-                            <span class="collection_profile_role">CURATION LEAD</span>
+                            <span class="collection_profile_role">CUSTOMER</span>
                         </div>
                         <img src="../../../asset/img/avata_img.png" alt="Profile">
                     </div>
@@ -95,7 +95,7 @@
                 </div>
                 <div class="buttom_item">
                     <button>Export</button>
-                    <button>Add to Cart</button>
+                    <button onclick="add_item_cart()">Add to Cart</button>
                 </div>
             </div>
             <div class="details_item">
@@ -137,7 +137,7 @@
                         </div>
                         <div>
                             <h4>Quantity Buy:</h4>
-                            <input type="number">
+                            <input type="number" id="quantity_buy">
                         </div>
                         <div>
                             <h4>Decription:</h4>
@@ -181,6 +181,7 @@
     </div>
     <script src="../../main.js"></script>
     <script src="../user.js"></script>
+    <!-- <script src="../page_title_user.js"></script> -->
     <script src="./item.js"></script>
 </body>
 </html>

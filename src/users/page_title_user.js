@@ -18,7 +18,6 @@ if(details_user.find(task => task.id == user.detail_user_id))
 {
     title_page_men.innerHTML = `Welcome back !`;
 }
-console.log(products);
 function reload_page()
 {
     localStorage.setItem('products', JSON.stringify(products));

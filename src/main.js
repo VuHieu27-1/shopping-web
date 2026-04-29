@@ -6,6 +6,7 @@ let users = localStorage.getItem('users') ? JSON.parse(localStorage.getItem('use
 let products = localStorage.getItem('products') ? JSON.parse(localStorage.getItem('products')) : [];
 let types = localStorage.getItem('types') ? JSON.parse(localStorage.getItem('types')) : [];
 let images = localStorage.getItem('images') ? JSON.parse(localStorage.getItem('images')) : [];
+let cart = localStorage.getItem('cart') ? JSON.parse(localStorage.getItem('cart')) : [];
 // let product = localStorage.getItem('product') ? JSON.parse(localStorage.getItem('product')) : undefined;
 let details_item = localStorage.getItem('details_item') ? JSON.parse(localStorage.getItem('details_item')) : undefined;
 const admin_brand_text = document.querySelector('.admin_brand_text h1');
