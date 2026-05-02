@@ -1,8 +1,11 @@
 const table_info_user = document.querySelector(".table_details_user");
 const title_name = document.querySelector(".title_name");
-const admin_info = details_user.find(task => task.id == user.detail_user_id);
 
 function reload_page() {
+    details_user = localStorage.getItem('details_user') ? JSON.parse(localStorage.getItem('details_user')) : [];
+    user = localStorage.getItem('user') ? JSON.parse(localStorage.getItem('user')) : undefined;
+    const admin_info = details_user.find(task => task.id == user.detail_user_id);
+
     title_name.innerHTML = `
         <img src="../../../asset/img/avata_img.png" alt="" style="width:96px; height:96px; border-radius:28px; object-fit:cover; box-shadow:0 12px 24px rgba(240,107,131,0.18);">
         <div style="display:flex; flex-direction:column; gap:8px;">

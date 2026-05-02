@@ -1,5 +1,4 @@
 const url_params = new URLSearchParams(window.location.search).get('id');
-console.log(url_params)
 detail_item = products.find(task => task.id == url_params);
 document.querySelector("title").innerHTML = detail_item.name;
 const main_img_item = document.querySelector('.main_img_item');
@@ -52,17 +51,18 @@ function reload_page()
         }
         area_item.innerHTML = 
         `
-        <td class="sub_area_item">
-            <i class="material-icons">location_on</i>
-            <span>${element.area}</span>
-        </td>
-        </td>
         <td>
-            <button>View More</button>
+            <div class="sub_area_item">
+                <i class="material-icons">location_on</i>
+                <span>${element.area}</span>
+            </div>
+        </td>
+        <td style="text-align: center;">
+            <button class="view_more_btn">View More</button>
         </td>
         `;
         name_item.innerHTML = element.name;
-        price_item.innerHTML = `$ ${element.price} VND`;
+        price_item.innerHTML = `${element.price} VND`;
         let decription = types.find(task => task.id == element.type_id).decription;
         decription_item.innerHTML = decription;
         arrive_items.innerHTML = position_user;
@@ -72,34 +72,6 @@ function reload_page()
 // ==========================================Page_cart==========================================
 // console.log(products);
 // console.log(admins);
-function add_item_cart()
-{
-    const id = cart.length ? cart[cart.length - 1].id + 1 : 1;
-    const product_item = products.find(task => task.id == url_params);
-    // const user_item
-    if(quantity_buy.value != 0 && parseInt(quantity_buy.value) < parseInt(product_item.quantity) && !(cart.find(task => task.product_id == product_item.id) && cart.find(task => task.user_id == user.id)))
-    {
-        cart.push({
-            id: id,
-            product_id: product_item.id,
-            product_name: product_item.name,
-            user_id: user.id,
-            user_name: user.username,
-            quantity: quantity_buy.value,
-            price_item:  quantity_buy.value * product_item.price
-        });
-    }else if(cart.find(task => task.product_id == product_item.id) && cart.find(task => task.user_id == user.id))
-    {
-        cart.find(task => task.product_id == product_item.id).quantity =  quantity_buy.value;
-        cart.find(task => task.product_id == product_item.id).price_item =  quantity_buy.value * product_item.price;
-    }
-    else if(parseInt(quantity_buy.value) > parseInt(product_item.quantity))
-    {
-        alert("Quantity not valid");
-    }
-    quantity_buy.value = "";
-    localStorage.setItem('cart', JSON.stringify(cart));
-}
 // localStorage.removeItem('cart');
 if(user != undefined)
 {
@@ -107,3 +79,55 @@ if(user != undefined)
 }
 console.log(cart);
 reload_page();
+
+(function action_add_cart() {
+    const addBtn      = document.querySelector('.buttom_item button:last-child');
+    const cartIconWrap = document.querySelector('.cart_icon_wrap');
+    const badge       = document.querySelector('.number_of_cart');
+    if (!addBtn || !cartIconWrap) return;
+
+    const toast = document.createElement('div');
+    toast.className = 'cart_success_toast';
+    toast.innerHTML = '<i class="material-icons toast_icon">check_circle</i><span>Added to Cart!</span>';
+    document.body.appendChild(toast);
+    let toastTimer;
+
+    addBtn.addEventListener('click', function () {
+        const btnRect  = addBtn.getBoundingClientRect();
+        const cartRect = cartIconWrap.getBoundingClientRect();
+        const startX = btnRect.left  + btnRect.width  / 2;
+        const startY = btnRect.top   + btnRect.height / 2;
+        const endX   = cartRect.left + cartRect.width  / 2;
+        const endY   = cartRect.top  + cartRect.height / 2;
+
+        const imgEl  = document.querySelector('.main_img_item img');
+        const flyEl  = document.createElement('div');
+        flyEl.className = 'fly_item';
+        flyEl.innerHTML = imgEl
+            ? `<img src="${imgEl.src}" alt="">`
+            : '<i class="material-icons fly_item_icon">shopping_bag</i>';
+        flyEl.style.left = (startX - 30) + 'px';
+        flyEl.style.top  = (startY - 30) + 'px';
+        document.body.appendChild(flyEl);
+
+        flyEl.animate([
+            { transform: 'translate(0,0) scale(1)', opacity: 1 },
+            { transform: `translate(${endX - startX}px,${endY - startY}px) scale(0.2)`, opacity: 0 }
+        ], { duration: 700, easing: 'cubic-bezier(0.22, 0.61, 0.36, 1)', fill: 'forwards' }
+        ).onfinish = function () {
+            flyEl.remove();
+            cartIconWrap.classList.remove('cart_icon_bounce');
+            void cartIconWrap.offsetWidth;
+            cartIconWrap.classList.add('cart_icon_bounce');
+            if (badge) {
+                badge.classList.remove('badge_pulse');
+                void badge.offsetWidth;
+                badge.classList.add('badge_pulse');
+            }
+        };
+
+        clearTimeout(toastTimer);
+        toast.classList.add('toast_show');
+        toastTimer = setTimeout(() => toast.classList.remove('toast_show'), 2500);
+    });
+})();

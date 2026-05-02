@@ -1,15 +1,19 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Inter:wght@400;500;600;700&display=swap">
     <link rel="stylesheet" href="../../style.css">
     <title>Details User</title>
 </head>
 <body id="body_admin">
-        <div id="menu_page_admin">
-            <a href="../" title="Home">
+    <div id="menu_page_admin">
+        <a href="../" title="Home">
             <div class="admin_brand">
                 <div class="admin_brand_logo">Y</div>
                 <div class="admin_brand_text">
@@ -17,82 +21,135 @@
                     <p>Management panel</p>
                 </div>
             </div>
-            </a>
-            <a href="../" class="menu_admin_item">
-                <i class="material-icons">group</i>
-                <span>Users</span>
-            </a>
-            <a href="../roles/" class="menu_admin_item">
-                <i class="material-icons">settings_accessibility</i>
-                <span>Roles</span>
-            </a>
-            <a href="../admin_info/view.html" class="menu_admin_item">
-                <i class="material-icons">badge</i>
-                <span>View Admin Info</span>
-            </a>
-            <a href="./" class="menu_admin_item menu_admin_item_active">
-                <i class="material-icons">manage_accounts</i>
-                <span>User Managerment</span>
-            <a href="../products/" class="menu_admin_item" >
+        </a>
+        <a href="../" class="menu_admin_item">
+            <i class="material-icons">group</i>
+            <span>Users</span>
+        </a>
+        <a href="../roles/" class="menu_admin_item">
+            <i class="material-icons">settings_accessibility</i>
+            <span>Roles</span>
+        </a>
+        <a href="../admin_info/view.html" class="menu_admin_item">
+            <i class="material-icons">badge</i>
+            <span>View Admin Info</span>
+        </a>
+        <a href="./" class="menu_admin_item menu_admin_item_active">
+            <i class="material-icons">manage_accounts</i>
+            <span>User Managerment</span>
+            <a href="../products/" class="menu_admin_item">
                 <i class="material-icons">category</i>
-                <span>Product Managerment</span>
+                <span>Product</span>
             </a>
-        </div>
-        <div id="content_page_admin">
-            <div class="title_page_admin admin_surface">
-                <div>
-                    <h1>User Management</h1>
-                    <div class="admin_breadcrumb">
-                        <span>Members</span>
-                        <i class="material-icons">chevron_right</i>
-                        <span>User Management</span>
-                    </div>
+    </div>
+    <div id="content_page_admin">
+        <div class="title_page_admin admin_surface">
+            <div>
+                <h1>User Management</h1>
+                <div class="admin_breadcrumb">
+                    <span>Members</span>
+                    <i class="material-icons">chevron_right</i>
+                    <span>User Management</span>
                 </div>
-                <button type="button" class="buttom_sign_out " onclick="sign_out()">
-                    <i class="material-icons">logout</i>
-                    <span>Sign out</span>
+            </div>
+            <button type="button" class="buttom_sign_out" onclick="sign_out()">
+                <i class="material-icons">logout</i>
+                <span>Sign out</span>
+            </button>
+        </div>
+        <div class="info_table_admin admin_surface">
+            <table class="table_details_user">
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                    <th>Address</th>
+                    <th>Gender</th>
+                    <th>Action</th>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <!-- Modal: Add / Edit User Info -->
+    <div class="admin_modal_overlay" id="modal_details_user">
+        <div class="admin_modal">
+            <div class="admin_modal_header">
+                <h3>
+                    <i class="material-icons">manage_accounts</i>
+                    User Info
+                </h3>
+                <button class="admin_modal_close" onclick="close_modal_details_user()">
+                    <i class="material-icons">close</i>
                 </button>
             </div>
-            <div class="admin_panel admin_surface">
-                <div class="info_detail_user">
-                    <div class="block_feature_admin">
-                        <input type="text" placeholder="Name" class="input_name">
-                        <div style="display:flex; align-items:center; gap:14px; height:54px; border-radius:16px; border:1px solid #ecd5d8; background:#fffdfc; padding:0 16px; box-sizing:border-box; font-family:var(--font_text); color:#8d4f58;">
-                            <span style="margin:0;">Gender</span>
-                            <div class="gender" style="display:flex; align-items:center; gap:10px;">
-                                <input type="radio" name="radio" value="male" class="male" checked>
-                                <span style="margin:0;">Male</span>
-                                <input type="radio" name="radio" value="female" class="female">
-                                <span style="margin:0;">Female</span>
-                            </div>
+            <div class="admin_modal_body info_detail_user">
+                <div class="admin_modal_grid">
+                    <div class="admin_modal_field">
+                        <label class="admin_modal_label">Name</label>
+                        <input type="text" placeholder="Full name" class="input_name">
+                    </div>
+                    <div class="admin_modal_field">
+                        <label class="admin_modal_label">Gender</label>
+                        <div class="admin_modal_gender">
+                            <input type="radio" name="radio" value="male" class="male" checked>
+                            <span>Male</span>
+                            <input type="radio" name="radio" value="female" class="female">
+                            <span>Female</span>
                         </div>
+                    </div>
+                    <div class="admin_modal_field">
+                        <label class="admin_modal_label">Email</label>
                         <input type="email" placeholder="@gmail.com" class="input_email">
+                    </div>
+                    <div class="admin_modal_field">
+                        <label class="admin_modal_label">Phone</label>
                         <input type="tel" placeholder="0987654321" class="input_phone">
                     </div>
-                    <div class="block_feature_admin" style="grid-template-columns: 3fr 1fr; margin-top: 14px;">
+                    <div class="admin_modal_field admin_modal_field_full">
+                        <label class="admin_modal_label">Address</label>
                         <input type="text" placeholder="Address" class="input_address">
-                        <button type="button" class="admin_action_button" onclick="add_details_user()">Save Info</button>
-                    </div>
-                    <div class="notify_add_success hidden_feature" style="margin-top: 16px;">
-                        <span style="color: rgb(55, 209, 55); font-family: var(--font_text); font-weight: 700;">Admin details have been successfully added.</span>
                     </div>
                 </div>
+                <div class="notify_add_success hidden_feature" style="margin-top:8px;">
+                    <span style="color:rgb(55,209,55);font-family:var(--font_text);font-weight:700;">Saved successfully.</span>
+                </div>
             </div>
-            <div class="info_table_admin admin_surface">
-                <table class="table_details_user">
-                    <tr>
-                        <th>ID</th>
-                        <th>Name</th>
-                        <th>Email</th>
-                        <th>Phone</th>
-                        <th>Address</th>
-                        <th>Gender</th>
-                        <th>Action</th>
-                    </tr>
-                </table>
+            <div class="admin_modal_footer">
+                <button class="admin_modal_cancel" onclick="close_modal_details_user()">Cancel</button>
+                <button class="admin_modal_save" onclick="save_and_close_details_user()">Save Info</button>
             </div>
         </div>
-        <script src="../../main.js"></script>
-        <script src="detail_user.js"></script>
+    </div>
+
+    <script src="../../main.js"></script>
+    <script src="detail_user.js"></script>
+    <script>
+        function open_modal_details_user() {
+            document.getElementById('modal_details_user').classList.add('modal_active');
+        }
+        function close_modal_details_user() {
+            document.getElementById('modal_details_user').classList.remove('modal_active');
+            input_name.value = '';
+            input_email.value = '';
+            input_phone.value = '';
+            input_address.value = '';
+            male.checked = true;
+            check_edit_details_user = -1;
+        }
+        function save_and_close_details_user() {
+            add_details_user();
+            if (input_name.value === '') {
+                close_modal_details_user();
+                reload_page();
+            }
+        }
+        const _orig_edit_details_user = window.edit_details_user;
+        window.edit_details_user = function(id) {
+            _orig_edit_details_user(id);
+            open_modal_details_user();
+        };
+    </script>
 </body>
 </html>
+

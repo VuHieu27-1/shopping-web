@@ -1,10 +1,13 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-     <link rel="stylesheet" href="../../style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Inter:wght@400;500;600;700&display=swap">
+    <link rel="stylesheet" href="../../style.css">
     <title>View Info User</title>
 </head>
 <body class="body_detail_user">
@@ -27,15 +30,10 @@
             <span>View Info</span>
         </a>
     </div>
+
     <div class="user_view_dashboard">
         <div class="admin_surface admin_panel">
-            <div class="title_name" style="display:flex; align-items:center; gap:18px;">
-                <img src="../../../asset/img/avata_img.png" alt="" style="width:96px; height:96px; border-radius:28px; object-fit:cover; box-shadow:0 12px 24px rgba(240,107,131,0.18);">
-                <div style="display:flex; flex-direction:column; gap:8px;">
-                    <h2 style="margin:0; font-family:var(--font_text); color:#8d4f58; font-size:32px;">User</h2>
-                    <span style="font-family:var(--font_text); color:#ab7f86; font-size:18px;">user@gmail.com</span>
-                </div>
-            </div>
+            <div class="title_name" style="display:flex; align-items:center; justify-content:space-between; gap:18px;"></div>
         </div>
         <div class="info_table_admin admin_surface">
             <table class="table_details_user">
@@ -45,60 +43,167 @@
                 </tr>
             </table>
         </div>
-        <div class="info_detail_user" style="display:none;"></div>
     </div>
+
     <div class="buttom_back" onclick="back_page()">
         <span><i class="material-icons">arrow_back_ios_new</i></span>
         <button>Back</button>
     </div>
+
+    <!-- stubs required by main.js -->
+    <span class="notify_add_success hidden_feature" style="display:none"></span>
+
+    <!-- Edit Profile Modal -->
+    <div class="admin_modal_overlay" id="modal_edit_user">
+        <div class="admin_modal">
+            <div class="admin_modal_header">
+                <h3>
+                    <i class="material-icons">manage_accounts</i>
+                    Edit Profile
+                </h3>
+                <button class="admin_modal_close" onclick="close_edit_modal()">
+                    <i class="material-icons">close</i>
+                </button>
+            </div>
+            <div class="admin_modal_body info_detail_user">
+                <div class="admin_modal_field">
+                    <label class="admin_modal_label">Full Name</label>
+                    <input type="text" class="input_name" placeholder="Full name">
+                </div>
+                <div class="admin_modal_field">
+                    <label class="admin_modal_label">Gender</label>
+                    <div class="detail_user_gender_row">
+                        <label class="gender_option">
+                            <input type="radio" name="gender_edit" class="male">
+                            <span>Male</span>
+                        </label>
+                        <label class="gender_option">
+                            <input type="radio" name="gender_edit" class="female">
+                            <span>Female</span>
+                        </label>
+                    </div>
+                </div>
+                <div class="admin_modal_field">
+                    <label class="admin_modal_label">Email</label>
+                    <input type="text" class="input_email" placeholder="example@gmail.com">
+                </div>
+                <div class="admin_modal_field">
+                    <label class="admin_modal_label">Phone</label>
+                    <input type="tel" class="input_phone" placeholder="0987654321">
+                </div>
+                <div class="admin_modal_field">
+                    <label class="admin_modal_label">Address</label>
+                    <input type="text" class="input_address" placeholder="Your address">
+                </div>
+            </div>
+            <div class="admin_modal_footer">
+                <button class="admin_modal_cancel" onclick="close_edit_modal()">Cancel</button>
+                <button class="admin_modal_save" onclick="save_edit_user()">
+                    Save Changes
+                </button>
+            </div>
+        </div>
+    </div>
+
     <script src="../../main.js"></script>
     <script>
         const table_info_user = document.querySelector(".table_details_user");
         const title_name = document.querySelector(".title_name");
         let check_info_user = details_user.find(task => task.id == user.detail_user_id);
 
-        function reload_page(){
+        function reload_page() {
+            check_info_user = details_user.find(task => task.id == user.detail_user_id);
+            const hasInfo = !!check_info_user;
+
             title_name.innerHTML = `
-                <img src="../../../asset/img/avata_img.png" alt="" style="width:96px; height:96px; border-radius:28px; object-fit:cover; box-shadow:0 12px 24px rgba(240,107,131,0.18);">
-                <div style="display:flex; flex-direction:column; gap:8px;">
-                    <h2 style="margin:0; font-family:var(--font_text); color:#8d4f58; font-size:32px;">${check_info_user ? check_info_user.name : 'Who you are'}</h2>
-                    <span style="font-family:var(--font_text); color:#ab7f86; font-size:18px;">${check_info_user ? check_info_user.email : 'justone@gmail.com'}</span>
+                <div style="display:flex; align-items:center; gap:18px;">
+                    <img src="../../../asset/img/avata_img.png" alt=""
+                         style="width:96px; height:96px; border-radius:28px; object-fit:cover;
+                                box-shadow:0 12px 24px rgba(240,107,131,0.18);">
+                    <div style="display:flex; flex-direction:column; gap:8px;">
+                        <h2 style="margin:0; font-family:var(--font_text); color:#8d4f58; font-size:32px;">
+                            ${hasInfo ? check_info_user.name : 'Who you are'}
+                        </h2>
+                        <span style="font-family:var(--font_text); color:#ab7f86; font-size:18px;">
+                            ${hasInfo ? check_info_user.email : 'justone@gmail.com'}
+                        </span>
+                    </div>
                 </div>
+                <button class="admin_add_button" onclick="open_edit_modal()"
+                        ${!hasInfo ? 'disabled style="opacity:0.45;cursor:not-allowed;"' : ''}>
+                    <i class="material-icons">edit</i>
+                    <span>Edit Profile</span>
+                </button>
             `;
 
-            table_info_user.innerHTML=
-            `                
-                <tr>
-                    <th width="30%">Field</th>
-                    <th>Value</th>
-                </tr>
+            table_info_user.innerHTML = `
+                <tr><th width="30%">Field</th><th>Value</th></tr>
+                <tr><td>Name</td>   <td>${hasInfo ? check_info_user.name    : 'N/A'}</td></tr>
+                <tr><td>Gender</td> <td>${hasInfo ? check_info_user.gender  : 'N/A'}</td></tr>
+                <tr><td>Email</td>  <td>${hasInfo ? check_info_user.email   : 'N/A'}</td></tr>
+                <tr><td>Phone</td>  <td>${hasInfo ? check_info_user.phone   : 'N/A'}</td></tr>
+                <tr><td>Address</td><td>${hasInfo ? check_info_user.address : 'N/A'}</td></tr>
             `;
-
-            table_info_user.innerHTML +=
-                `
-                    <tr>
-                        <td>Name</td>
-                        <td>${check_info_user ? check_info_user.name : 'N/A'}</td>
-                    </tr>
-                    <tr>
-                        <td>Gender</td>
-                        <td>${check_info_user ? check_info_user.gender : 'N/A'}</td>
-                    </tr>
-                    <tr>
-                        <td>Email</td>
-                        <td>${check_info_user ? check_info_user.email : 'N/A'}</td>
-                    </tr>
-                    <tr>
-                        <td>Phone</td>
-                        <td>${check_info_user ? check_info_user.phone : 'N/A'}</td>
-                    </tr>
-                    <tr>
-                        <td>Address</td>
-                        <td>${check_info_user ? check_info_user.address : 'N/A'}</td>
-                    </tr>
-                `;
         }
+
+        function edit_details_user(id) {
+            check_edit_details_user = id;
+            const rec = details_user.find(t => t.id == id);
+            input_name.value    = rec.name;
+            input_email.value   = rec.email;
+            input_phone.value   = rec.phone;
+            input_address.value = rec.address;
+            if (rec.gender == "Male") { male.checked = true; } else { female.checked = true; }
+            localStorage.setItem("details_user", JSON.stringify(details_user));
+            reload_page();
+            document.getElementById('modal_edit_user').classList.add('modal_active');
+        }
+
+        function save_edit_user() {
+            if (check_edit_details_user == -1) return;
+
+            const nameVal    = input_name.value.trim();
+            const emailVal   = input_email.value.trim();
+            const phoneVal   = input_phone.value.trim();
+            const addressVal = input_address.value.trim();
+            const genderVal  = male.checked ? "Male" : "Female";
+
+            if (!nameVal || !emailVal || !phoneVal || !addressVal) {
+                alert("Please fill in all fields"); return;
+            }
+            if (!emailVal.includes("@")) {
+                alert("Email not valid"); return;
+            }
+            if (!/^\d{10}$/.test(phoneVal)) {
+                alert("Phone not valid"); return;
+            }
+
+            const rec = details_user.find(t => t.id == check_edit_details_user);
+            rec.name    = nameVal;
+            rec.email   = emailVal;
+            rec.phone   = phoneVal;
+            rec.address = addressVal;
+            rec.gender  = genderVal;
+
+            localStorage.setItem("details_user", JSON.stringify(details_user));
+
+            check_edit_details_user = -1;
+            close_edit_modal();
+            reload_page();
+        }
+
+        function open_edit_modal() {
+            if (!check_info_user) return;
+            edit_details_user(check_info_user.id);
+        }
+
+        function close_edit_modal() {
+            document.getElementById('modal_edit_user').classList.remove('modal_active');
+            check_edit_details_user = -1;
+        }
+
         reload_page();
     </script>
 </body>
 </html>
+

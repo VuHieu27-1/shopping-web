@@ -44,4 +44,5 @@ function open_item_details(id)
     console.log(details_item);
     window.location.href = `../items/?id=${details_item.id}`
 }
+
 reload_page();

@@ -1,9 +1,12 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Inter:wght@400;500;600;700&display=swap">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=delivery_truck_speed" />
     <link rel="stylesheet" href="../../style.css">
     <title></title>
@@ -42,7 +45,10 @@
         </div>
         <div class="side_bar_links side_bar_links_secondary">
             <a href="../cart/" class="side_bar_item">
-                <i class="material-icons">shopping_cart</i>
+                <span class="cart_icon_wrap">
+                    <i class="material-icons">shopping_cart</i>
+                    <span class="number_of_cart"></span>
+                </span>
                 <span>Cart</span>
             </a>
             <button type="button" class="side_bar_item side_bar_item_button">
@@ -72,9 +78,9 @@
     <div class="collection_shell">
         <div class="collection_dashboard">
             <div class="menu_title collection_topbar">
-                <label class="buttom_search">
-                    <h3>Product</h3>
-                </label>
+                <div class="cart_topbar_left">
+                    <h2 class="cart_heading">Product</h2>
+                </div>
                 <div class="side_menu_right collection_actions">
                     <button type="button" class="collection_icon_button" aria-label="Notifications">
                         <i class="material-icons">notifications_none</i>
@@ -94,7 +100,7 @@
                     <span>Product Details</span>
                 </div>
                 <div class="buttom_item">
-                    <button>Export</button>
+                    <button>Share</button>
                     <button onclick="add_item_cart()">Add to Cart</button>
                 </div>
             </div>
@@ -137,7 +143,7 @@
                         </div>
                         <div>
                             <h4>Quantity Buy:</h4>
-                            <input type="number" id="quantity_buy">
+                            <input type="number" id="quantity_buy" value="1">
                         </div>
                         <div>
                             <h4>Decription:</h4>

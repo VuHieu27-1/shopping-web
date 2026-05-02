@@ -56,7 +56,6 @@ function edit_details_user(id)
         female.checked = true;
     }
     localStorage.setItem("details_user", JSON.stringify(details_user));
-    reload_page();
 }
 console.log(user.detail_user_id);
 console.log(admins);

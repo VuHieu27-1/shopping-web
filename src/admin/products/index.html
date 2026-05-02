@@ -1,22 +1,25 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Inter:wght@400;500;600;700&display=swap">
     <link rel="stylesheet" href="../../style.css">
-    <title>Product</title>
+    <title>Product Management</title>
 </head>
 <body id="body_admin" onclick="off_open_setting()">
     <div id="menu_page_admin">
         <a href="../" title="Home">
-        <div class="admin_brand">
-            <div class="admin_brand_logo">Y</div>
-            <div class="admin_brand_text">
-                <h1></h1>
-                <p>Management panel</p>
+            <div class="admin_brand">
+                <div class="admin_brand_logo">Y</div>
+                <div class="admin_brand_text">
+                    <h1></h1>
+                    <p>Management panel</p>
+                </div>
             </div>
-        </div>
         </a>
         <a href="../" class="menu_admin_item">
             <i class="material-icons">group</i>
@@ -32,17 +35,18 @@
         </a>
         <a href="../details_user/" class="menu_admin_item">
             <i class="material-icons">manage_accounts</i>
-            <span>User Managerment</span>
+            <span>User Management</span>
         </a>
-        <a href="./" class="menu_admin_item menu_admin_item_active" >
+        <a href="./" class="menu_admin_item menu_admin_item_active">
             <i class="material-icons">category</i>
-            <span>Product Managerment</span>
+            <span>Products</span>
         </a>
     </div>
+
     <div id="content_page_admin">
         <div class="title_page_admin admin_surface">
             <div>
-                <h1>Product Info</h1>
+                <h1>Products</h1>
                 <div class="admin_breadcrumb">
                     <span>Members</span>
                     <i class="material-icons">chevron_right</i>
@@ -56,47 +60,115 @@
                 </button>
             </div>
         </div>
+
         <div class="admin_surface title_page_admin">
             <div class="page_types_produce">
                 <a href="./types/" class="admin_secondary_link">
                     <i class="material-icons">tune</i>
                     <span>Manage Types</span>
                 </a>
+                <button class="admin_add_button" onclick="open_modal_products()">
+                    <i class="material-icons">add_circle_outline</i>
+                    <span>Add Product</span>
+                </button>
                 <select name="filter" id="filter_types" class="admin_secondary_link">
-                    <option value="" hidden>Filter Types</option>
-                    <option value="all">All</option>
+                    <option value="" hidden>Filter by Type</option>
+                    <option value="all">All Products</option>
                 </select>
-            </div>
-            <div class="feature_product">
-                <input type="text" id="input_name_product" placeholder="Product Name">
-                <input type="number" id="input_quantity" placeholder="Quantity">
-                <input type="number" id="input_price" placeholder="Prices">
-                <select name="types" id="types_product">
-                    <option value="" hidden>Choose Type</option>
-                </select>
-                <input type="text" id="input_area" placeholder="Area">
-                <button onclick="add_product()" class="admin_action_button">Add Product</button>
             </div>
         </div>
+
         <div class="content_table_product">
             <div class="title_table_product">
                 <i class="material-icons">circle</i>
-                <span>All Products<span>
+                <span>All Products</span>
             </div>
             <table class="table_product_info">
                 <tr>
                     <th>ID</th>
                     <th>Product Name</th>
-                    <th>Image Product</th>
-                    <th>Type Product</th>
-                    <th>Quantity</th>
+                    <th>Image</th>
+                    <th>Type</th>
+                    <th>Qty</th>
+                    <th>Area</th>
                     <th>Price</th>
                     <th>Action</th>
                 </tr>
             </table>
         </div>
     </div>
+
+    <!-- ── Modal: Add / Edit Product ── -->
+    <div class="admin_modal_overlay" id="modal_products">
+        <div class="admin_modal">
+            <div class="admin_modal_header">
+                <h3>
+                    <i class="material-icons">inventory_2</i>
+                    Product Information
+                </h3>
+                <button class="admin_modal_close" onclick="close_modal_products()">
+                    <i class="material-icons">close</i>
+                </button>
+            </div>
+            <div class="admin_modal_body feature_product">
+                <div class="admin_modal_field">
+                    <label class="admin_modal_label">Product Name</label>
+                    <input type="text" id="input_name_product" placeholder="Enter product name">
+                </div>
+                <div class="admin_modal_grid">
+                    <div class="admin_modal_field">
+                        <label class="admin_modal_label">Quantity</label>
+                        <input type="number" id="input_quantity" placeholder="0" min="0">
+                    </div>
+                    <div class="admin_modal_field">
+                        <label class="admin_modal_label">Price ($)</label>
+                        <input type="number" id="input_price" placeholder="0.00" min="0">
+                    </div>
+                </div>
+                <div class="admin_modal_field">
+                    <label class="admin_modal_label">Product Type</label>
+                    <select id="types_product">
+                        <option value="" hidden>Choose type…</option>
+                    </select>
+                </div>
+                <div class="admin_modal_field">
+                    <label class="admin_modal_label">Area / Origin</label>
+                    <input type="text" id="input_area" placeholder="Enter area or origin">
+                </div>
+            </div>
+            <div class="admin_modal_footer">
+                <button class="admin_modal_cancel" onclick="close_modal_products()">Cancel</button>
+                <button class="admin_modal_save" onclick="save_and_close_products()">Save Product</button>
+            </div>
+        </div>
+    </div>
+
     <script src="../../main.js"></script>
     <script src="./product.js"></script>
+    <script>
+        function open_modal_products() {
+            document.getElementById('modal_products').classList.add('modal_active');
+        }
+        function close_modal_products() {
+            document.getElementById('modal_products').classList.remove('modal_active');
+            document.getElementById('input_name_product').value = '';
+            document.getElementById('input_quantity').value = '';
+            document.getElementById('input_price').value = '';
+            document.getElementById('types_product').value = '';
+            document.getElementById('input_area').value = '';
+            check_edit = -1;
+            check_action_edit = false;
+        }
+        function save_and_close_products() {
+            add_product();
+            if (document.getElementById('input_name_product').value === '') close_modal_products();
+        }
+        const _orig_edit_products = window.edit_products;
+        window.edit_products = function(id) {
+            _orig_edit_products(id);
+            open_modal_products();
+        };
+    </script>
 </body>
 </html>
+

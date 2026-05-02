@@ -36,16 +36,17 @@ function sync_products_with_images()
 }
 function check_types_product()
 {
-    let check_types;
+    let changed = false;
     products.forEach(task => {
-        check_types = types.find(type => type.id == task.type_id);
+        const check_types = types.find(type => type.id == task.type_id);
         if(!check_types)
         {
             task.type_id = "";
-            localStorage.setItem('products', JSON.stringify(products));
-            reload_page();
+            task.type_name = "";
+            changed = true;
         }
-    }); 
+    });
+    if(changed) localStorage.setItem('products', JSON.stringify(products));
 }
 function render_types()
 {
@@ -101,7 +102,7 @@ function reload_page()
                 <td>${product.image_path}</td>
                 <td class="feature_types">
                     ${product.type_name}
-                    <h3 class="note_types_product">${types.find(task => task.id == product.type_id).decription}</h3>
+                    <h3 class="note_types_product">${types.find(task => task.id == product.type_id)?.decription ?? ''}</h3>
                 </td>
                 <td>${product.quantity}</td>
                 <td>${product.area}</td>

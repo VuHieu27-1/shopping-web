@@ -119,8 +119,8 @@ function add_details_user()
     }
     let check_validate_email = ! input_email.value.includes("@");
     let check_validate_phone = ! /^\d{10}$/.test(input_phone.value);
-    if(input_name.value != "" && input_email.value != "" && input_phone.value != "" 
-       && input_address.value != "" && check_gender != "" && check_edit_details_user == -1 
+    if(input_name.value != "" && input_email.value != "" && input_phone.value != ""
+       && input_address.value != "" && check_gender != "" && check_edit_details_user == -1
        && !check_validate_email && !check_validate_phone)
     {
         details_user.push({
@@ -138,9 +138,13 @@ function add_details_user()
         input_address.value = "";
         check_gender = "";
         check_action_add_user = true;
+        user.detail_user_id = id;
+        admins.find(tasks => tasks.id == user.id).detail_user_id = id;
+        localStorage.setItem('user', JSON.stringify(user));
+        localStorage.setItem("details_user", JSON.stringify(details_user));
+        localStorage.setItem('admins', JSON.stringify(admins));
         show_notify_add_success();
-        window.location.reload();
-    }else if(check_edit_details_user != -1 && input_name.value != "" && input_email.value != "" 
+    }else if(check_edit_details_user != -1 && input_name.value != "" && input_email.value != ""
         && input_phone.value != "" && input_address.value != "" && check_gender != ""
         && !check_validate_email && !check_validate_phone)
     {
@@ -155,6 +159,8 @@ function add_details_user()
         input_phone.value = "";
         input_address.value = "";
         check_gender = "";
+        localStorage.setItem("details_user", JSON.stringify(details_user));
+        show_notify_add_success();
     }else if(check_validate_email)    {
         alert("Email not valid");
     }else if(check_validate_phone)    {
@@ -164,12 +170,6 @@ function add_details_user()
     {
         alert("Please fill in all fields");
     }
-    user.detail_user_id = id;
-    admins.find(tasks => tasks.id == user.id).detail_user_id = user.detail_user_id;
-    localStorage.setItem('user', JSON.stringify(user));
-    localStorage.setItem("details_user", JSON.stringify(details_user));
-    localStorage.setItem('admins', JSON.stringify(admins));
-    window.location.reload();
 }
 info_detail_user.addEventListener("keydown", event => {
     if(event.key == 'Enter')
@@ -185,9 +185,13 @@ function show_notify_add_success()
         notify_add_success.classList.remove('hidden_feature');
         setTimeout(() => {
             notify_add_success.classList.add('hidden_feature');
-        }, 3000);
+        }, 10000);
     }
     check_action_add_user = false;
+    setTimeout(() =>
+    {
+        window.location.reload();
+    }, 2000);
 }
 // =====================BACK_PAGE=======================///
 function back_page()

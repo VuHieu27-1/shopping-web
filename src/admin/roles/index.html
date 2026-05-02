@@ -1,22 +1,25 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Inter:wght@400;500;600;700&display=swap">
     <link rel="stylesheet" href="../../style.css">
     <title>Roles Panel</title>
 </head>
 <body id="body_admin">
     <div id="menu_page_admin">
         <a href="../" title="Home">
-        <div class="admin_brand">
-            <div class="admin_brand_logo">Y</div>
-            <div class="admin_brand_text">
-                <h1></h1>
-                <p>Management panel</p>
+            <div class="admin_brand">
+                <div class="admin_brand_logo">Y</div>
+                <div class="admin_brand_text">
+                    <h1></h1>
+                    <p>Management panel</p>
+                </div>
             </div>
-        </div>
         </a>
         <a href="../" class="menu_admin_item">
             <i class="material-icons">group</i>
@@ -32,11 +35,11 @@
         </a>
         <a href="../details_user/" class="menu_admin_item">
             <i class="material-icons">manage_accounts</i>
-            <span>User Managerment</span>
+            <span>User Management</span>
         </a>
-        <a href="../products/" class="menu_admin_item" >
+        <a href="../products/" class="menu_admin_item">
             <i class="material-icons">category</i>
-            <span>Product Managerment</span>
+            <span>Products</span>
         </a>
     </div>
     <div id="content_page_admin">
@@ -49,17 +52,18 @@
                     <span>Roles</span>
                 </div>
             </div>
-            <button type="button" class="buttom_sign_out " onclick="sign_out()">
-                <i class="material-icons">logout</i>
-                <span>Sign out</span>
-            </button>
-        </div>
-        <div id="feature_roles" class="admin_panel admin_surface">
-            <div class="roles_form">
-                <input type="text" placeholder="Role Name">
-                <button type="button" class="admin_action_button" onclick="add_role()">Save Role</button>
+            <div class="title_page_admin_actions">
+                <button class="admin_add_button" onclick="open_modal_roles()">
+                    <i class="material-icons">add_moderator</i>
+                    <span>Add Role</span>
+                </button>
+                <button type="button" class="buttom_sign_out" onclick="sign_out()">
+                    <i class="material-icons">logout</i>
+                    <span>Sign out</span>
+                </button>
             </div>
         </div>
+
         <div id="info_table_roles" class="info_table_admin admin_surface">
             <table class="table_roles">
                 <tr>
@@ -70,7 +74,54 @@
             </table>
         </div>
     </div>
+
+    <!-- ── Modal: Add / Edit Role ── -->
+    <div class="admin_modal_overlay" id="modal_roles">
+        <div class="admin_modal">
+            <div class="admin_modal_header">
+                <h3>
+                    <i class="material-icons">shield</i>
+                    Role Information
+                </h3>
+                <button class="admin_modal_close" onclick="close_modal_roles()">
+                    <i class="material-icons">close</i>
+                </button>
+            </div>
+            <div class="admin_modal_body" id="feature_roles">
+                <div class="admin_modal_field">
+                    <label class="admin_modal_label">Role Name</label>
+                    <input type="text" placeholder="Enter role name (e.g. editor)">
+                </div>
+            </div>
+            <div class="admin_modal_footer">
+                <button class="admin_modal_cancel" onclick="close_modal_roles()">Cancel</button>
+                <button class="admin_modal_save" onclick="save_and_close_roles()">Save Role</button>
+            </div>
+        </div>
+    </div>
+
     <script src="../../main.js"></script>
     <script src="roles.js"></script>
+    <script>
+        function open_modal_roles() {
+            document.getElementById('modal_roles').classList.add('modal_active');
+        }
+        function close_modal_roles() {
+            document.getElementById('modal_roles').classList.remove('modal_active');
+            document.querySelector('#feature_roles input').value = '';
+            check_edit_roles = -1;
+            check_action_edit = false;
+        }
+        function save_and_close_roles() {
+            add_role();
+            if (document.querySelector('#feature_roles input').value === '') close_modal_roles();
+        }
+        const _orig_edit_role = window.edit_role;
+        window.edit_role = function(id) {
+            _orig_edit_role(id);
+            open_modal_roles();
+        };
+    </script>
 </body>
 </html>
+

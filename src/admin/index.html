@@ -1,15 +1,18 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Inter:wght@400;500;600;700&display=swap">
     <link rel="stylesheet" href="../style.css">
     <title>Admin Panel</title>
 </head>
 <body id="body_admin">
-        <div id="menu_page_admin">
-            <a href="../" title="Home">
+    <div id="menu_page_admin">
+        <a href="../" title="Home">
             <div class="admin_brand">
                 <div class="admin_brand_logo">Y</div>
                 <div class="admin_brand_text">
@@ -17,11 +20,11 @@
                     <p>Management panel</p>
                 </div>
             </div>
-            </a>
-            <a href="./" class="menu_admin_item menu_admin_item_active">
-                <i class="material-icons">group</i>
-                <span>Users</span>
-            </a>
+        </a>
+        <a href="./" class="menu_admin_item menu_admin_item_active">
+            <i class="material-icons">group</i>
+            <span>Users</span>
+        </a>
         <a href="./roles/" class="menu_admin_item">
             <i class="material-icons">settings_accessibility</i>
             <span>Roles</span>
@@ -32,55 +35,112 @@
         </a>
         <a href="./details_user/" class="menu_admin_item">
             <i class="material-icons">manage_accounts</i>
-            <span>User Managerment</span>
+            <span>User Management</span>
         </a>
         <a href="./products/" class="menu_admin_item">
             <i class="material-icons">category</i>
-            <span>Product Managerment</span>
+            <span>Products</span>
         </a>
-        </div>
-        <div id="content_page_admin">
-            <div class="title_page_admin admin_surface">
-                <div>
-                    <h1>Users</h1>
-                    <div class="admin_breadcrumb">
-                        <span>Members</span>
-                        <i class="material-icons">chevron_right</i>
-                        <span>Users</span>
-                    </div>
+    </div>
+    <div id="content_page_admin">
+        <div class="title_page_admin admin_surface">
+            <div>
+                <h1>Users</h1>
+                <div class="admin_breadcrumb">
+                    <span>Members</span>
+                    <i class="material-icons">chevron_right</i>
+                    <span>Users</span>
                 </div>
+            </div>
                 <button type="button" class="buttom_sign_out " onclick="sign_out()">
                     <i class="material-icons">logout</i>
                     <span>Sign out</span>
                 </button>
+        </div>
+        <div class="admin_panel admin_surface">
+            <div class="admin_search">
+                <i class="material-icons">search</i>
+                <input type="text" placeholder="Search users…">
             </div>
-            <div class="admin_panel admin_surface">
-                <div class="admin_search">
-                    <i class="material-icons">search</i>
-                    <input type="text" placeholder="Search">
-                </div>
-                <div class="block_feature_admin">
-                    <input type="text" placeholder="User Name" class="input_user">
-                    <input type="text" placeholder="Password" class="input_password">
-                    <select name="roles" id="roles_users">
-                        <option value="" hidden>Choose Role</option>
-                    </select>
-                    <button type="button" class="admin_action_button" onclick="add_users()">Save User</button>
-                </div>
-            </div>
-            <div class="info_table_admin admin_surface">
-                <table class="table_admin">
-                    <tr>
+            <button class="admin_add_button" onclick="open_modal_users()">
+                <i class="material-icons">person_add</i>
+                <span>Add User</span>
+            </button>
+        </div>
+
+        <div class="info_table_admin admin_surface">
+            <table class="table_admin">
+                <tr>
                     <th width="5%">ID</th>
                     <th>Username</th>
                     <th>Password</th>
+                    <th>Detail User Id</th>
                     <th>Roles</th>
                     <th>Action</th>
-                    </tr>
-                </table>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <!-- ── Modal: Add / Edit User ── -->
+    <div class="admin_modal_overlay" id="modal_users">
+        <div class="admin_modal">
+            <div class="admin_modal_header">
+                <h3>
+                    <i class="material-icons">person_add</i>
+                    User Information
+                </h3>
+                <button class="admin_modal_close" onclick="close_modal_users()">
+                    <i class="material-icons">close</i>
+                </button>
+            </div>
+            <div class="admin_modal_body block_feature_admin">
+                <div class="admin_modal_field">
+                    <label class="admin_modal_label">Username</label>
+                    <input type="text" placeholder="Enter username" class="input_user">
+                </div>
+                <div class="admin_modal_field">
+                    <label class="admin_modal_label">Password</label>
+                    <input type="text" placeholder="Enter password" class="input_password">
+                </div>
+                <div class="admin_modal_field">
+                    <label class="admin_modal_label">Role</label>
+                    <select id="roles_users">
+                        <option value="" hidden>Choose role…</option>
+                    </select>
+                </div>
+            </div>
+            <div class="admin_modal_footer">
+                <button class="admin_modal_cancel" onclick="close_modal_users()">Cancel</button>
+                <button class="admin_modal_save" onclick="save_and_close_users()">Save User</button>
             </div>
         </div>
-        <script src="../main.js"></script>
-        <script src="admin.js"></script>
-</body> 
+    </div>
+
+    <script src="../main.js"></script>
+    <script src="admin.js"></script>
+    <script>
+        function open_modal_users() {
+            document.getElementById('modal_users').classList.add('modal_active');
+        }
+        function close_modal_users() {
+            document.getElementById('modal_users').classList.remove('modal_active');
+            document.querySelector('.input_user').value = '';
+            document.querySelector('.input_password').value = '';
+            document.querySelector('#roles_users').value = '';
+            check_edit_admin = -1;
+            check_action_edit = false;
+        }
+        function save_and_close_users() {
+            add_users();
+            if (document.querySelector('.input_user').value === '') close_modal_users();
+        }
+        const _orig_edit_admin = window.edit_admin;
+        window.edit_admin = function(id) {
+            _orig_edit_admin(id);
+            open_modal_users();
+        };
+    </script>
+</body>
 </html>
+

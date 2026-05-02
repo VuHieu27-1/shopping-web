@@ -1,22 +1,26 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Inter:wght@400;500;600;700&display=swap">
     <link rel="stylesheet" href="../../style.css">
     <title>View Admin Info</title>
 </head>
 <body id="body_admin">
     <div id="menu_page_admin">
         <a href="../" title="Home">
-        <div class="admin_brand">
-            <div class="admin_brand_logo">Y</div>
-            <div class="admin_brand_text">
-                <h1></h1>
-                <p>Management panel</p>
+            <div class="admin_brand">
+                <div class="admin_brand_logo">Y</div>
+                <div class="admin_brand_text">
+                    <h1></h1>
+                    <p>Management panel</p>
+                </div>
             </div>
-        </div>
         </a>
         <a href="../" class="menu_admin_item">
             <i class="material-icons">group</i>
@@ -34,9 +38,9 @@
             <i class="material-icons">manage_accounts</i>
             <span>User Managerment</span>
         </a>
-        <a href="../products/" class="menu_admin_item" >
+        <a href="../products/" class="menu_admin_item">
             <i class="material-icons">category</i>
-            <span>Product Managerment</span>
+            <span>Product </span>
         </a>
     </div>
     <div id="content_page_admin">
@@ -54,34 +58,16 @@
                 <span>Sign out</span>
             </button>
         </div>
-        <div class="admin_panel admin_surface">
-            <div class="info_detail_user">
-                <div class="block_feature_admin">
-                    <input type="text" placeholder="Name" class="input_name">
-                    <div style="display:flex; align-items:center; gap:14px; height:54px; border-radius:16px; border:1px solid #ecd5d8; background:#fffdfc; padding:0 16px; box-sizing:border-box; font-family:var(--font_text); color:#8d4f58;">
-                        <span style="margin:0;">Gender</span>
-                        <div class="gender" style="display:flex; align-items:center; gap:10px;">
-                            <input type="radio" name="radio" value="male" class="male" checked>
-                            <span style="margin:0;">Male</span>
-                            <input type="radio" name="radio" value="female" class="female">
-                            <span style="margin:0;">Female</span>
-                        </div>
-                    </div>
-                    <input type="email" placeholder="@gmail.com" class="input_email">
-                    <input type="tel" placeholder="0987654321" class="input_phone">
-                </div>
-                <div class="block_feature_admin" style="grid-template-columns: 3fr 1fr; margin-top: 14px;">
-                    <input type="text" placeholder="Address" class="input_address">
-                    <button type="button" class="admin_action_button" onclick="add_details_user()">Save Info</button>
-                </div>
-                <div class="notify_add_success hidden_feature" style="margin-top: 16px;">
-                    <span style="color: rgb(55, 209, 55); font-family: var(--font_text); font-weight: 700;">Admin details have been successfully added.</span>
-                </div>
-            </div>
+        <div class="admin_surface" style="display:flex;align-items:center;padding:14px 22px;">
+            <button class="admin_add_button" onclick="open_modal_admin_info()">
+                <i class="material-icons">edit</i>
+                <span>Edit Info</span>
+            </button>
         </div>
         <div class="admin_surface admin_panel">
             <div class="title_name" style="display:flex; align-items:center; gap:18px;">
-                <img src="../../../asset/img/avata_img.png" alt="" style="width:96px; height:96px; border-radius:28px; object-fit:cover; box-shadow:0 12px 24px rgba(240,107,131,0.18);">
+                <img src="../../../asset/img/avata_img.png" alt=""
+                    style="width:96px; height:96px; border-radius:28px; object-fit:cover; box-shadow:0 12px 24px rgba(240,107,131,0.18);">
                 <div style="display:flex; flex-direction:column; gap:8px;">
                     <h2 style="margin:0; font-family:var(--font_text); color:#8d4f58; font-size:32px;">Admin</h2>
                     <span style="font-family:var(--font_text); color:#ab7f86; font-size:18px;">admin@gmail.com</span>
@@ -98,7 +84,93 @@
         </div>
         <div class="info_detail_user" style="display:none;"></div>
     </div>
+    <!-- Modal: Edit Admin Info -->
+    <div class="admin_modal_overlay" id="modal_admin_info">
+        <div class="admin_modal">
+            <div class="admin_modal_header">
+                <h3>
+                    <i class="material-icons">badge</i>
+                    Admin Info
+                </h3>
+                <button class="admin_modal_close" onclick="close_modal_admin_info()">
+                    <i class="material-icons">close</i>
+                </button>
+            </div>
+            <div class="admin_modal_body info_detail_user">
+                <div class="admin_modal_grid">
+                    <div class="admin_modal_field">
+                        <label class="admin_modal_label">Name</label>
+                        <input type="text" placeholder="Full name" class="input_name">
+                    </div>
+                    <div class="admin_modal_field">
+                        <label class="admin_modal_label">Gender</label>
+                        <div class="admin_modal_gender">
+                            <input type="radio" name="radio" value="male" class="male" checked>
+                            <span>Male</span>
+                            <input type="radio" name="radio" value="female" class="female">
+                            <span>Female</span>
+                        </div>
+                    </div>
+                    <div class="admin_modal_field">
+                        <label class="admin_modal_label">Email</label>
+                        <input type="email" placeholder="@gmail.com" class="input_email">
+                    </div>
+                    <div class="admin_modal_field">
+                        <label class="admin_modal_label">Phone</label>
+                        <input type="tel" placeholder="0987654321" class="input_phone">
+                    </div>
+                    <div class="admin_modal_field admin_modal_field_full">
+                        <label class="admin_modal_label">Address</label>
+                        <input type="text" placeholder="Address" class="input_address">
+                    </div>
+                </div>
+                <div class="notify_add_success hidden_feature" style="margin-top:8px;">
+                    <span style="color:rgb(55,209,55);font-family:var(--font_text);font-weight:700;">Saved successfully.</span>
+                </div>
+            </div>
+            <div class="admin_modal_footer">
+                <button class="admin_modal_cancel" onclick="close_modal_admin_info()">Cancel</button>
+                <button class="admin_modal_save" onclick="save_and_close_admin_info()">Save Info</button>
+            </div>
+        </div>
+    </div>
+
     <script src="../../main.js"></script>
     <script src="./view.js"></script>
+    <script>
+        function open_modal_admin_info() {
+            const current = details_user.find(t => t.id == user.detail_user_id);
+            if (current) {
+                input_name.value = current.name;
+                input_email.value = current.email;
+                input_phone.value = current.phone;
+                input_address.value = current.address;
+                if (current.gender === 'Male') male.checked = true;
+                else female.checked = true;
+                check_edit_details_user = current.id;
+            } else {
+                check_edit_details_user = -1;
+            }
+            document.getElementById('modal_admin_info').classList.add('modal_active');
+        }
+        function close_modal_admin_info() {
+            document.getElementById('modal_admin_info').classList.remove('modal_active');
+            input_name.value = '';
+            input_email.value = '';
+            input_phone.value = '';
+            input_address.value = '';
+            male.checked = true;
+            check_edit_details_user = -1;
+        }
+        function save_and_close_admin_info() {
+            add_details_user();
+            if (input_name.value === '') {
+                close_modal_admin_info();
+                reload_page();
+            }
+        }
+    </script>
 </body>
+
 </html>
+

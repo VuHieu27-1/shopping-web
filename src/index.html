@@ -1,9 +1,12 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Inter:wght@400;500;600;700&display=swap">
     <link rel="stylesheet" href="./style.css">
     <title>Login Page</title>
 </head>
@@ -16,34 +19,75 @@
      </div> -->
      <div id="login_page">
         <div id="conten_login">
-            <h2>Shopping WebSite</h2>
-            <p>Welcome To Shopping WebSite</p>
-            <span>We are happy to see you here</span>
-            <div id="button_sign">
-                <button class="sign_in effect_sign_buttom" onclick="change_status_sign1()">Sign in</button>
-                <button class="sign_up" onclick="change_status_sign2()">Sign up</button>
+            <div class="login_brand">
+                <div class="login_brand_mark">Y</div>
+                <span class="login_brand_name">YuYa</span>
             </div>
-            <div class="feature_login">
-                <input type="text" class="login_user " placeholder="Username">
-                <div class="password_feature">
-                    <input type="password" class="login_password" placeholder="Password">
-                    <i class="material-icons password_toggle" onclick="togglePasswordVisibility('.login_password', this)">visibility</i>
+
+            <div class="login_form_body">
+                <div class="login_headline">
+                    <h2>Welcome back</h2>
+                    <p>Sign in to your account to continue</p>
+                </div>
+
+                <div id="button_sign">
+                    <button class="sign_in effect_sign_buttom" onclick="change_status_sign1()">Sign in</button>
+                    <button class="sign_up" onclick="change_status_sign2()">Sign up</button>
+                </div>
+
+                <div class="feature_login">
+                    <div class="login_field">
+                        <label class="login_label">Username</label>
+                        <input type="text" class="login_user" placeholder="Enter your username">
+                    </div>
+                    <div class="login_field">
+                        <label class="login_label">Password</label>
+                        <div class="password_feature">
+                            <input type="password" class="login_password" placeholder="Enter your password">
+                            <i class="material-icons password_toggle" onclick="togglePasswordVisibility('.login_password', this)">visibility</i>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="feature_sign_up hidden_feature">
+                    <div class="login_field">
+                        <label class="login_label">Username</label>
+                        <input type="text" class="login_user_register" placeholder="Choose a username">
+                    </div>
+                    <div class="login_field">
+                        <label class="login_label">Password</label>
+                        <div class="password_feature">
+                            <input type="password" class="login_password_register" placeholder="Create a password">
+                            <i class="material-icons password_toggle" onclick="togglePasswordVisibility('.login_password_register', this)">visibility</i>
+                        </div>
+                    </div>
+                    <div class="login_field">
+                        <label class="login_label">Confirm Password</label>
+                        <div class="password_feature">
+                            <input type="password" class="login_password_confirm" placeholder="Repeat your password">
+                            <i class="material-icons password_toggle" onclick="togglePasswordVisibility('.login_password_confirm', this)">visibility</i>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="button_login_register">
+                    <button onclick="login_action()" class="button_login">Login</button>
+                    <button onclick="register_action()" class="button_register hidden_feature">Register</button>
                 </div>
             </div>
-            <div class="feature_sign_up hidden_feature">
-                <input type="text" class="login_user_register" placeholder="Username">
-                <div class="password_feature">
-                    <input type="password" class="login_password_register" placeholder="Password">
-                    <i class="material-icons password_toggle" onclick="togglePasswordVisibility('.login_password_register', this)">visibility</i>
-                </div>
-                <div class="password_feature">
-                    <input type="password" class="login_password_confirm" placeholder="Password confirm">
-                    <i class="material-icons password_toggle" onclick="togglePasswordVisibility('.login_password_confirm', this)">visibility</i>
-                </div>
+
+            <div class="login_footer">
+                <span>© 2026 YuYa. All rights reserved.</span>
             </div>
-            <div id="button_login_register">
-                <button onclick="login_action()" class="button_login">Login</button>
-                <button onclick="register_action()" class="button_register hidden_feature">Register</button>
+        </div>
+
+        <div id="login_visual">
+            <img src="../asset/img/pexels-mikitayo-16566215.jpg" alt="YuYa Fashion">
+            <div class="login_visual_overlay"></div>
+            <div class="login_visual_caption">
+                <span class="login_visual_tag">NEW SEASON</span>
+                <h3 class="login_visual_title">Discover the season's<br>finest curations</h3>
+                <p class="login_visual_sub">Premium fashion, curated for you</p>
             </div>
         </div>
      </div>
@@ -51,3 +95,4 @@
      <script src="login.js"></script>
 </body>
 </html>
+
